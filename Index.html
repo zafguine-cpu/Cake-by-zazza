@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>🎂 Cake by Zazza</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --r:   #e8a0b4; --rd: #c06080; --rp: #fce8ef; --rpp:#f9d0df;
+  --rt:  #8b3a5a; --nu: #fdf6f8; --wh: #ffffff;  --dk: #3a2030;
+  --go:  #c8a96e; --gb: #f5e6c8; --gn: #2d7a4f;  --gnb:#e8f5ec;
+  --re:  #c04040; --reb:#fff0f0; --sh:0 2px 20px rgba(192,96,128,.10);
+  --shm: 0 8px 40px rgba(192,96,128,.18); --rad:16px; --rads:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);color:var(--dk);overflow-x:hidden;}
+
+/* NAV */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(–rpp);display:flex;height:62px;padding:0 4px 6px;}
+.nb{flex:1;border:none;background:none;padding:6px 2px 0;font-size:10px;font-weight:500;color:#bbb;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.2s;}
+.nb .ic{font-size:20px;line-height:1;}
+.nb.on{color:var(–rt);}
+.nb.on .ic{transform:translateY(-2px);}
+
+/* TOP BAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:99;background:var(–wh);border-bottom:1px solid var(–rpp);height:52px;display:flex;align-items:center;padding:0 16px;gap:10px;}
+.topbar-title{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–rt);flex:1;}
+.topbar-sub{font-size:11px;color:#bbb;}
+
+/* PAGES */
+.page{display:none;padding:60px 0 70px;min-height:100vh;}
+.page.on{display:block;}
+.wrap{max-width:680px;margin:0 auto;padding:0 14px;}
+
+/* PAGE HEADER */
+.ph{padding:18px 14px 14px;background:linear-gradient(135deg,var(–rt),var(–rd));color:#fff;margin-bottom:16px;}
+.ph h1{font-family:‘Cormorant Garamond’,serif;font-size:24px;font-weight:600;}
+.ph p{font-size:11px;opacity:.75;margin-top:3px;}
+
+/* CARDS */
+.card{background:var(–wh);border-radius:var(–rad);box-shadow:var(–sh);margin-bottom:14px;overflow:hidden;}
+.ch{padding:13px 16px;background:var(–rt);color:#fff;display:flex;align-items:center;gap:8px;}
+.ch h2{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;flex:1;}
+.cb{padding:16px;}
+
+/* KPI */
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.kpi{background:var(–wh);border-radius:var(–rads);box-shadow:var(–sh);padding:14px 12px;text-align:center;border-top:3px solid var(–rpp);}
+.kpi.gd{border-color:var(–gn);}
+.kpi.bd{border-color:var(–re);}
+.kv{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–rt);line-height:1.1;}
+.kl{font-size:10px;color:#aaa;margin-top:3px;}
+
+/* FORMS */
+.fr{margin-bottom:12px;}
+.fr label{display:block;font-size:11px;font-weight:600;color:var(–rt);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.fr input,.fr select,.fr textarea{width:100%;padding:10px 12px;border:1.5px solid var(–rpp);border-radius:var(–rads);font-size:14px;font-family:‘DM Sans’,sans-serif;background:var(–wh);color:var(–dk);outline:none;transition:.2s;}
+.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(–r);box-shadow:0 0 0 3px rgba(232,160,180,.15);}
+.fr textarea{resize:vertical;min-height:64px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.auto{background:var(–gnb)!important;border-color:#aad4bc!important;color:var(–gn)!important;font-weight:600;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:var(–rads);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:.2s;font-family:‘DM Sans’,sans-serif;white-space:nowrap;}
+.bp{background:var(–rt);color:#fff;}
+.bp:active{background:var(–rd);}
+.bs{background:var(–rp);color:var(–rt);}
+.bg{background:var(–gn);color:#fff;}
+.bgo{background:var(–gb);color:var(–dk);}
+.bd2{background:var(–re);color:#fff;}
+.bfw{width:100%;justify-content:center;}
+.bgrp{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.bsm{padding:7px 12px;font-size:11px;}
+
+/* TABS */
+.tabs{display:flex;border-bottom:2px solid var(–rpp);margin-bottom:16px;overflow-x:auto;}
+.tab{padding:9px 14px;font-size:12px;font-weight:500;color:#aaa;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:.2s;}
+.tab.on{color:var(–rt);border-color:var(–rt);}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:600;}
+.bgn{background:var(–gnb);color:var(–gn);}
+.bre{background:var(–reb);color:var(–re);}
+.bgo2{background:var(–gb);color:var(–dk);}
+.bro{background:var(–rp);color:var(–rt);}
+
+/* LIST ITEMS */
+.li{background:var(–wh);border-radius:var(–rads);box-shadow:var(–sh);padding:12px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid var(–rpp);cursor:pointer;transition:.2s;}
+.li:active{transform:scale(.99);}
+.li.gd{border-color:var(–gn);}
+.li.wa{border-color:var(–go);}
+.li.bd{border-color:var(–re);}
+.li h4{font-size:13px;font-weight:600;}
+.li p{font-size:11px;color:#aaa;margin-top:2px;}
+.li .amt{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:var(–rt);font-weight:600;}
+
+/* CATALOG */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cat-card{background:var(–wh);border-radius:var(–rad);box-shadow:var(–sh);overflow:hidden;cursor:pointer;transition:.2s;}
+.cat-card:active{transform:scale(.97);}
+.cat-img{width:100%;height:130px;object-fit:cover;background:var(–rpp);display:flex;align-items:center;justify-content:center;font-size:48px;}
+.cat-img img{width:100%;height:100%;object-fit:cover;}
+.cat-info{padding:10px 12px;}
+.cat-name{font-size:13px;font-weight:600;color:var(–rt);}
+.cat-price{font-family:‘Cormorant Garamond’,serif;font-size:16px;color:var(–gn);margin-top:2px;}
+.cat-cost{font-size:10px;color:#aaa;margin-top:1px;}
+
+/* RECIPE */
+.ing-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.ing-row input{flex:1;}
+.ing-row input.qty{width:80px;flex:none;}
+.ing-row input.unit{width:70px;flex:none;}
+.ing-row .del{background:none;border:none;color:var(–re);font-size:18px;cursor:pointer;padding:4px;}
+
+/* CHART */
+.chart{display:flex;gap:6px;align-items:flex-end;height:110px;padding-bottom:20px;overflow:hidden;}
+.cbar-w{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.cbar{width:100%;border-radius:4px 4px 0 0;transition:height .5s;min-height:3px;}
+.clbl{font-size:9px;color:#aaa;text-align:center;}
+
+/* VERDICT */
+.verdict{padding:14px;border-radius:var(–rads);text-align:center;font-weight:600;font-size:14px;margin:10px 0;line-height:1.4;}
+.ve{background:var(–gnb);color:var(–gn);}
+.vg{background:var(–gb);color:var(–dk);}
+.vw{background:#fff3e0;color:#e65100;}
+.vd{background:var(–reb);color:var(–re);}
+
+/* MODAL */
+.mover{display:none;position:fixed;inset:0;background:rgba(58,32,48,.55);z-index:200;align-items:flex-end;justify-content:center;padding:0;}
+.mover.on{display:flex;}
+.modal{background:var(–wh);border-radius:var(–rad) var(–rad) 0 0;width:100%;max-width:600px;max-height:92vh;overflow-y:auto;box-shadow:var(–shm);animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mh{padding:16px 18px;background:var(–rt);color:#fff;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1;}
+.mh h3{font-family:‘Cormorant Garamond’,serif;font-size:19px;}
+.mx{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;}
+.mb{padding:18px;}
+
+/* SCAN */
+.dropz{border:2px dashed var(–r);border-radius:var(–rad);padding:28px;text-align:center;background:var(–rp);cursor:pointer;transition:.2s;}
+.dropz:active{background:var(–rpp);}
+.scan-res{margin-top:14px;background:var(–wh);border-radius:var(–rads);padding:14px;border-left:4px solid var(–gn);}
+.sf{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(–rp);font-size:12px;}
+.sf:last-child{border:none;}
+.sf span{font-weight:600;color:var(–rt);}
+
+/* CONTACT */
+.alert-badge{background:var(–re);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-left:4px;}
+
+/* EMPTY */
+.empty{text-align:center;padding:36px 20px;color:#ccc;}
+.empty .ic{font-size:44px;margin-bottom:8px;}
+
+/* SPINNER */
+.spin{display:inline-block;width:18px;height:18px;border:2px solid var(–rpp);border-top-color:var(–rt);border-radius:50%;animation:sp .7s linear infinite;}
+@keyframes sp{to{transform:rotate(360deg)}}
+.lmsg{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(–gb);border-radius:var(–rads);font-size:13px;margin-top:12px;}
+
+/* INVOICE PRINT */
+.inv-print{background:var(–wh);border:1.5px solid var(–rpp);border-radius:var(–rad);padding:20px;}
+.inv-brand{text-align:center;padding-bottom:14px;border-bottom:2px solid var(–rpp);margin-bottom:14px;}
+.inv-brand h1{font-family:‘Cormorant Garamond’,serif;font-size:26px;color:var(–rt);}
+.inv-brand p{font-size:10px;color:#aaa;margin-top:3px;}
+.inv-brand .dtype{font-size:18px;font-weight:700;color:var(–rd);letter-spacing:2px;margin-top:8px;text-transform:uppercase;}
+.inv-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.inv-meta h4{font-size:10px;text-transform:uppercase;color:#aaa;letter-spacing:.5px;margin-bottom:3px;}
+.inv-table{width:100%;border-collapse:collapse;margin-bottom:12px;}
+.inv-table th{background:var(–rp);padding:7px 10px;font-size:10px;text-transform:uppercase;color:var(–rt);text-align:left;}
+.inv-table td{padding:7px 10px;border-bottom:1px solid var(–rp);font-size:12px;}
+.inv-totbox{background:var(–rt);color:#fff;border-radius:var(–rads);padding:13px;display:flex;justify-content:space-between;align-items:center;}
+.inv-totbox .lbl{font-size:11px;opacity:.8;}
+.inv-totbox .val{font-family:‘Cormorant Garamond’,serif;font-size:22px;font-weight:600;}
+.inv-imp{margin-top:12px;background:var(–rp);border-radius:8px;padding:10px;font-size:10px;}
+
+/* PROGRESS */
+.prog{height:7px;background:var(–rpp);border-radius:4px;overflow:hidden;margin-top:8px;}
+.progf{height:100%;background:var(–rt);border-radius:4px;transition:width .4s;}
+
+/* SHARE CATALOG */
+.cat-share-item{background:var(–wh);border-radius:var(–rads);padding:12px;display:flex;gap:12px;align-items:center;border:1.5px solid var(–rpp);margin-bottom:8px;}
+.cat-share-thumb{width:54px;height:54px;border-radius:8px;object-fit:cover;background:var(–rpp);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+
+/* RAPPORT */
+.rstat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.rst{background:var(–wh);border-radius:var(–rads);padding:10px 8px;text-align:center;box-shadow:var(–sh);}
+.rst .v{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;color:var(–rt);}
+.rst .l{font-size:9px;color:#aaa;margin-top:2px;}
+
+/* TOP BAR ACTIONS */
+.topbar-actions{display:flex;gap:6px;align-items:center;}
+.icon-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:4px;}
+</style>
+
+</head>
+<body>
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+  <div class="topbar-title">🎂 Cake by Zazza</div>
+  <div class="topbar-sub" id="top-date"></div>
+</div>
+
+<!-- ═══ PAGE : DASHBOARD ═══ -->
+
+<div id="p-dash" class="page on">
+  <div class="ph"><h1>Tableau de Bord</h1><p id="db-month">Chargement...</p></div>
+  <div class="wrap">
+    <div class="kgrid">
+      <div class="kpi"><div class="kv" id="v-ca">0 GNF</div><div class="kl">💰 CA ce mois</div></div>
+      <div class="kpi gd" id="k-ben"><div class="kv" id="v-ben">0 GNF</div><div class="kl">✅ Bénéfice net</div></div>
+      <div class="kpi"><div class="kv" id="v-cmd">0</div><div class="kl">🎂 Commandes</div></div>
+      <div class="kpi" id="k-marge"><div class="kv" id="v-marge">0%</div><div class="kl">📊 Marge nette</div></div>
+    </div>
+    <div id="verdict" class="verdict vg">Créez vos premières commandes pour voir le verdict 🎯</div>
+
+```
+<div class="card">
+  <div class="ch"><span>📈</span><h2>CA 6 derniers mois</h2></div>
+  <div class="cb"><div class="chart" id="chart"></div></div>
+</div>
+
+<div class="card">
+  <div class="ch"><span>🏆</span><h2>Produits les plus vendus</h2></div>
+  <div class="cb" id="top-prods"></div>
+</div>
+
+<div class="card">
+  <div class="ch"><span>🔔</span><h2>Rappels clients <span class="alert-badge" id="rappel-count">0</span></h2></div>
+  <div class="cb" id="rappels-dash"></div>
+</div>
+
+<div class="card">
+  <div class="ch"><span>💡</span><h2>Conseil du mois</h2></div>
+  <div class="cb" id="conseil" style="font-size:13px;line-height:1.6;"></div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══ PAGE : FACTURES ═══ -->
+
+<div id="p-fac" class="page">
+  <div class="ph"><h1>Commandes & Factures</h1><p>Nouvelle commande · Archive · Impression</p></div>
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab on" onclick="stab('ft','f-new')">✏️ Nouvelle</div>
+      <div class="tab" onclick="stab('ft','f-arc')">📚 Archives</div>
+    </div>
+
+```
+<!-- NOUVELLE COMMANDE -->
+<div id="f-new">
+  <div class="card">
+    <div class="ch"><span>👤</span><h2>Client</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Nom *</label><input id="fc" placeholder="Aminata Diallo" oninput="updinv()"></div>
+        <div class="fr"><label>Téléphone</label><input id="ft2" placeholder="628 000 000" oninput="updinv()"></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Type document</label>
+          <select id="fdt" onchange="updinv()"><option>FACTURE</option><option>DEVIS</option><option>REÇU</option></select></div>
+        <div class="fr"><label>Date</label><input type="date" id="fd" oninput="updinv()"></div>
+      </div>
+      <div class="fr"><label>Occasion</label><input id="fev" placeholder="Anniversaire, Mariage..." oninput="updinv()"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><span>🎂</span><h2>Commande</h2></div>
+    <div class="cb">
+
+      <!-- Type de commande -->
+      <div class="fr" style="margin-bottom:14px;">
+        <label>Type de commande</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;">
+          <button id="btn-classic" onclick="setOrderType('classic')" class="btn bp" style="justify-content:center;padding:10px;">🎂 Gâteau classique</button>
+          <button id="btn-express" onclick="setOrderType('express')" class="btn bs" style="justify-content:center;padding:10px;">⚡ Produit Express</button>
+        </div>
+      </div>
+
+      <!-- ── MODE CLASSIQUE ── -->
+      <div id="mode-classic">
+        <div class="fgrid">
+          <div class="fr"><label>Produit catalogue</label>
+            <select id="fprod" onchange="selectProd()"><option value="">-- Choisir --</option></select></div>
+          <div class="fr"><label>Nombre de parts</label>
+            <select id="ftail" onchange="calcInvPrice()">
+              <option>10 parts</option><option>20 parts</option><option>30 parts</option><option>Plus (30+)</option></select></div>
+        </div>
+        <div class="fgrid">
+          <div class="fr"><label>Saveur génoise</label>
+            <select id="fgen"><option value="">--</option><option>Vanille</option><option>Chocolat</option><option>Vanille+Chocolat</option></select></div>
+          <div class="fr"><label>Saveur crème</label>
+            <select id="fcrem"><option value="">--</option><option>Vanille</option><option>Chocolat</option><option>Coco</option><option>Fraises</option><option>Caramel</option></select></div>
+        </div>
+      </div>
+
+      <!-- ── MODE EXPRESS ── -->
+      <div id="mode-express" style="display:none;">
+
+        <!-- Sélecteur depuis catalogue Express -->
+        <div class="fr">
+          <label>Produit Express (depuis votre catalogue)</label>
+          <select id="fex-catalog" onchange="selectExpressProd()">
+            <option value="">-- Choisir ou saisir manuellement --</option>
+          </select>
+        </div>
+
+        <!-- Ligne principale -->
+        <div style="background:var(--rp);border-radius:var(--rads);padding:12px;margin-bottom:10px;">
+          <div style="font-size:11px;font-weight:600;color:var(--rt);margin-bottom:8px;">📦 Ligne 1</div>
+          <div class="fgrid">
+            <div class="fr"><label>Produit</label>
+              <input id="fextype" placeholder="Ex: Cupcake Vanille" oninput="updateExpressTotal()"></div>
+            <div class="fr"><label>Taille</label>
+              <select id="fextail" onchange="updateExpressTotal()">
+                <option value="petit">Petit</option>
+                <option value="moyen" selected>Moyen</option>
+                <option value="grand">Grand</option>
+              </select></div>
+          </div>
+          <div class="fgrid">
+            <div class="fr"><label>Quantité</label>
+              <input id="fexqty" type="number" value="1" min="1" oninput="updateExpressTotal()"></div>
+            <div class="fr"><label>Prix unitaire (GNF) ✏️</label>
+              <input id="fexunit" type="number" placeholder="100000" oninput="updateExpressTotal()"></div>
+          </div>
+          <div style="font-size:10px;color:var(--gn);margin-top:4px;">💡 Prix pré-rempli depuis le catalogue · modifiable</div>
+        </div>
+
+        <!-- Lignes supplémentaires -->
+        <div id="express-extra-lines"></div>
+        <button class="btn bs bsm" onclick="addExpressLine()" style="margin-bottom:12px;width:100%;justify-content:center;">➕ Ajouter un autre produit</button>
+
+        <!-- Total -->
+        <div style="background:var(--gnb);border-radius:var(--rads);padding:12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;font-weight:600;color:var(--gn);">💰 Total commande 🤖</span>
+          <span id="express-total-display" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gn);">0 GNF</span>
+        </div>
+      </div>
+
+      <!-- Photo modèle (commun) -->
+      <div style="margin-top:12px;">
+        <div id="model-photo-box" style="display:none;margin-bottom:12px;">
+          <div style="font-size:11px;font-weight:600;color:var(--rt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">📸 Photo du modèle choisi</div>
+          <div style="position:relative;border-radius:var(--rad);overflow:hidden;border:1.5px solid var(--rpp);">
+            <img id="model-photo-img" style="width:100%;max-height:200px;object-fit:cover;display:block;">
+            <div style="position:absolute;top:8px;right:8px;">
+              <label style="background:rgba(255,255,255,.9);border-radius:20px;padding:5px 10px;font-size:11px;font-weight:600;color:var(--rt);cursor:pointer;border:1px solid var(--rpp);">
+                🔄 Changer
+                <input type="file" id="model-photo-input" accept="image/*" style="display:none" onchange="changeModelPhoto(event)">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id="model-upload-box" style="margin-bottom:12px;">
+          <div style="font-size:11px;font-weight:600;color:var(--rt);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">📸 Photo / modèle de référence</div>
+          <label style="display:flex;align-items:center;gap:10px;padding:12px;border:2px dashed var(--rpp);border-radius:var(--rads);cursor:pointer;background:var(--rp);">
+            <span style="font-size:24px;">📷</span>
+            <div><div style="font-size:13px;font-weight:500;color:var(--rt);">Ajouter une photo</div><div style="font-size:11px;color:#aaa;">Photo client, inspiration, modèle...</div></div>
+            <input type="file" id="model-photo-manual" accept="image/*" style="display:none" onchange="uploadManualPhoto(event)">
+          </label>
+        </div>
+      </div>
+
+      <div class="fr"><label>Personnalisation / Notes</label>
+        <textarea id="fperso" placeholder="Message, couleur, thème, instructions spéciales..." rows="2" oninput="updinv()"></textarea></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><span>💰</span><h2>Finances</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Prix de vente (GNF)</label><input id="fprix" type="number" placeholder="0" oninput="calcSolde()"></div>
+        <div class="fr"><label>Coût de revient 🤖</label><input id="fcout" class="auto" readonly></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Acompte reçu (GNF)</label><input id="facomp" type="number" value="0" oninput="calcSolde()"></div>
+        <div class="fr"><label>Solde restant 🤖</label><input id="fsold" class="auto" readonly></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Marge 🤖</label><input id="fmarge" class="auto" readonly></div>
+        <div class="fr"><label>Statut</label>
+          <select id="fstat"><option>EN COURS</option><option>CONFIRMÉ</option><option>EN PRÉPARATION</option><option>LIVRÉ</option><option>ACOMPTE REÇU</option><option>ANNULÉ</option></select></div>
+      </div>
+      <div class="fr"><label>Remarques</label><textarea id="frem" rows="2"></textarea></div>
+    </div>
+  </div>
+  <div class="bgrp">
+    <button class="btn bp bfw" onclick="saveInv()">💾 Enregistrer</button>
+    <button class="btn bs bfw" onclick="newInv()">🔄 Nouvelle commande</button>
+    <button class="btn bgo bfw" onclick="showInvModal()">👁️ Aperçu & Imprimer</button>
+  </div>
+  <div id="inv-ok" style="display:none;margin-top:10px;" class="lmsg">✅ Commande enregistrée !</div>
+</div>
+
+<!-- ARCHIVES -->
+<div id="f-arc" style="display:none;">
+  <div class="fgrid" style="margin-bottom:12px;">
+    <select id="arc-month" onchange="renderArc()"><option value="">Tous mois</option></select>
+    <select id="arc-stat" onchange="renderArc()"><option value="">Tous statuts</option><option>EN COURS</option><option>CONFIRMÉ</option><option>LIVRÉ</option><option>ANNULÉ</option></select>
+  </div>
+  <div id="arc-list"></div>
+</div>
+```
+
+  </div>
+  <button onclick="stab('ft','f-new');newInv()" style="position:fixed;bottom:72px;right:16px;width:52px;height:52px;border-radius:50%;background:var(--rt);color:#fff;font-size:26px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(192,96,128,.4);display:flex;align-items:center;justify-content:center;z-index:98;">＋</button>
+</div>
+
+<!-- ═══ PAGE : CATALOGUE ═══ -->
+
+<div id="p-cat" class="page">
+  <div class="ph"><h1>Catalogue & Recettes</h1><p>Produits · Coûts · Recettes · Partage</p></div>
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab on" onclick="stab('ct','cat-view')">🎂 Catalogue</div>
+      <div class="tab" onclick="stab('ct','cat-edit')">➕ Ajouter</div>
+      <div class="tab" onclick="stab('ct','cat-share')">📤 Partager</div>
+    </div>
+
+```
+<!-- CATALOGUE VIEW -->
+<div id="cat-view">
+  <div class="fgrid" style="margin-bottom:12px;">
+    <select id="cat-filter" onchange="renderCatalog()"><option value="">Tous types</option><option>Design</option><option>Crème</option><option>Mariage</option><option>Entreprise</option><option>Autre</option></select>
+    <button class="btn bs bfw" onclick="stab('ct','cat-edit')">➕ Nouveau produit</button>
+  </div>
+  <div class="cat-grid" id="cat-grid"></div>
+</div>
+
+<!-- AJOUTER PRODUIT -->
+<div id="cat-edit" style="display:none;">
+  <div class="card">
+    <div class="ch"><span>🎂</span><h2>Nouveau produit</h2></div>
+    <div class="cb">
+      <div class="fr"><label>Nom du produit *</label><input id="pnom" placeholder="Ex: Cupcake Vanille Fraises"></div>
+      <div class="fgrid">
+        <div class="fr"><label>Catégorie</label>
+          <select id="pcat" onchange="toggleExpressPrix()">
+            <option>Design</option><option>Crème</option><option>Mariage</option>
+            <option>Entreprise</option><option>⚡ Express</option><option>Autre</option>
+          </select></div>
+        <div class="fr"><label>Photo (optionnel)</label><input type="file" id="pphoto" accept="image/*" onchange="previewPhoto(event)"></div>
+      </div>
+      <div id="photo-preview" style="display:none;margin-bottom:10px;"><img id="prev-img" style="width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1.5px solid var(--rpp);"></div>
+      <div class="fr"><label>Description</label><textarea id="pdesc" placeholder="Description du produit..." rows="2"></textarea></div>
+
+      <!-- PRIX CLASSIQUE (par parts) -->
+      <div id="prix-classic-section" style="border-top:1.5px solid var(--rp);padding-top:14px;margin-top:4px;">
+        <div style="font-size:12px;font-weight:600;color:var(--rt);margin-bottom:10px;">💰 PRIX DE VENTE PAR NOMBRE DE PARTS</div>
+        <div class="fgrid">
+          <div class="fr"><label>10 parts (GNF)</label><input id="pp10" type="number" placeholder="150000" oninput="calcRevient()"></div>
+          <div class="fr"><label>20 parts (GNF)</label><input id="pp20" type="number" placeholder="280000" oninput="calcRevient()"></div>
+        </div>
+        <div class="fgrid">
+          <div class="fr"><label>30 parts (GNF)</label><input id="pp30" type="number" placeholder="420000" oninput="calcRevient()"></div>
+          <div class="fr"><label>Plus 30+ (GNF)</label><input id="ppplus" type="number" placeholder="600000" oninput="calcRevient()"></div>
+        </div>
+      </div>
+
+      <!-- PRIX EXPRESS (par taille) -->
+      <div id="prix-express-section" style="display:none;border-top:1.5px solid var(--rp);padding-top:14px;margin-top:4px;">
+        <div style="font-size:12px;font-weight:600;color:var(--rt);margin-bottom:4px;">⚡ PRIX PAR TAILLE</div>
+        <div style="font-size:11px;color:#aaa;margin-bottom:10px;">Modifiables à tout moment — se mettent à jour dans les commandes</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div class="fr"><label>Petit (GNF)</label><input id="pp-petit" type="number" placeholder="50000" oninput="calcRevient()"></div>
+          <div class="fr"><label>Moyen (GNF)</label><input id="pp-moyen" type="number" placeholder="100000" oninput="calcRevient()"></div>
+          <div class="fr"><label>Grand (GNF)</label><input id="pp-grand" type="number" placeholder="150000" oninput="calcRevient()"></div>
+        </div>
+        <div style="background:var(--gb);border-radius:var(--rads);padding:10px;margin-top:8px;font-size:11px;color:var(--dk);">
+          💡 Ces prix apparaîtront automatiquement quand tu sélectionnes ce produit dans une commande Express. Tu peux toujours les modifier manuellement dans la commande.
+        </div>
+      </div>
+
+      <div style="border-top:1.5px solid var(--rp);padding-top:14px;margin-top:4px;">
+        <div style="font-size:12px;font-weight:600;color:var(--rt);margin-bottom:10px;">🧾 RECETTE — Ingrédients & Coûts</div>
+        <div id="ings-list"></div>
+        <button class="btn bs bsm" onclick="addIng()" style="margin-top:4px;">➕ Ajouter ingrédient</button>
+      </div>
+
+      <div style="margin-top:14px;background:var(--gnb);border-radius:var(--rads);padding:12px;">
+        <div style="font-size:11px;font-weight:600;color:var(--gn);">🤖 COÛT DE REVIENT CALCULÉ</div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;">
+          <span style="font-size:12px;">Coût total ingrédients</span>
+          <span style="font-weight:600;color:var(--gn);" id="p-cout">0 GNF</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:4px;">
+          <span style="font-size:12px;">Marge estimée</span>
+          <span style="font-weight:600;color:var(--rt);" id="p-marge">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bgrp">
+    <button class="btn bp bfw" onclick="saveProduct()">💾 Enregistrer le produit</button>
+    <button class="btn bs bfw" onclick="stab('ct','cat-view')">Annuler</button>
+  </div>
+  <div id="prod-ok" style="display:none;margin-top:10px;" class="lmsg">✅ Produit enregistré !</div>
+</div>
+
+<!-- PARTAGER CATALOGUE -->
+<div id="cat-share" style="display:none;">
+  <div class="card">
+    <div class="ch"><span>📤</span><h2>Partager le catalogue</h2></div>
+    <div class="cb">
+      <div style="font-size:13px;color:#777;margin-bottom:14px;">Envoyez votre catalogue à vos clients par WhatsApp, email ou lien.</div>
+      <div id="share-list"></div>
+      <div class="bgrp">
+        <button class="btn bp bfw" onclick="shareCatalogWA()">📱 Partager sur WhatsApp</button>
+        <button class="btn bg bfw" onclick="printCatalog()">🖨️ Imprimer le catalogue</button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══ PAGE : FINANCES ═══ -->
+
+<div id="p-fin" class="page">
+  <div class="ph"><h1>Finances & Coûts</h1><p>Frais fixes · Achats · Scanner reçus · Rapport</p></div>
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab on" onclick="stab('fnt','fn-frais')">🏠 Frais fixes</div>
+      <div class="tab" onclick="stab('fnt','fn-achats')">🛒 Achats</div>
+      <div class="tab" onclick="stab('fnt','fn-scan')">📷 Scanner</div>
+      <div class="tab" onclick="stab('fnt','fn-rapport')">📊 Rapport</div>
+    </div>
+
+```
+<!-- FRAIS FIXES -->
+<div id="fn-frais">
+  <div class="card">
+    <div class="ch"><span>🏠</span><h2>Charges fixes mensuelles</h2></div>
+    <div class="cb">
+      <div class="fr"><label>Loyer / local (GNF)</label><input type="number" id="ff-loyer" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Salaires employés (GNF)</label><input type="number" id="ff-sal" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Électricité (GNF)</label><input type="number" id="ff-elec" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Gaz (GNF)</label><input type="number" id="ff-gaz" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Internet / Téléphone (GNF)</label><input type="number" id="ff-tel" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Transport (GNF)</label><input type="number" id="ff-trans" placeholder="0" oninput="saveFF()"></div>
+      <div class="fr"><label>Autres charges (GNF)</label><input type="number" id="ff-autres" placeholder="0" oninput="saveFF()"></div>
+      <div style="background:var(--rp);border-radius:var(--rads);padding:12px;display:flex;justify-content:space-between;margin-top:4px;">
+        <span style="font-weight:600;color:var(--rt);">Total charges fixes</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--rt);" id="ff-total">0 GNF</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHATS -->
+<div id="fn-achats" style="display:none;">
+  <div class="card">
+    <div class="ch"><span>🛒</span><h2>Nouvel achat</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Date</label><input type="date" id="ach-date"></div>
+        <div class="fr"><label>Catégorie</label>
+          <select id="ach-cat"><option>Farine</option><option>Sucre</option><option>Beurre</option><option>Œufs</option><option>Crème</option><option>Chocolat</option><option>Pâte à sucre</option><option>Emballages</option><option>Déco</option><option>Autre</option></select></div>
+      </div>
+      <div class="fr"><label>Description</label><input id="ach-desc" placeholder="Ex: Farine 25kg sac"></div>
+      <div class="fgrid">
+        <div class="fr"><label>Quantité</label><input id="ach-qty" type="number" placeholder="1"></div>
+        <div class="fr"><label>Coût total (GNF)</label><input id="ach-cout" type="number" placeholder="0"></div>
+      </div>
+      <button class="btn bp bfw" style="margin-top:4px;" onclick="saveAchat()">➕ Enregistrer l'achat</button>
+    </div>
+  </div>
+  <div id="ach-list"></div>
+</div>
+
+<!-- SCANNER REÇU -->
+<div id="fn-scan" style="display:none;">
+  <div class="lmsg" style="display:flex;margin-bottom:14px;">💡 Prenez en photo un reçu manuscrit ou imprimé — l'IA extrait le montant automatiquement.</div>
+  <div class="dropz" onclick="document.getElementById('rscan').click()">
+    <div style="font-size:36px;">📷</div>
+    <h3 style="color:var(--rt);margin-top:8px;font-size:15px;">Photo d'un reçu ou facture fournisseur</h3>
+    <p style="font-size:11px;color:#aaa;margin-top:4px;">JPG, PNG — Reçus manuscrits, caisse, fournisseurs</p>
+  </div>
+  <input type="file" id="rscan" accept="image/*" capture="environment" style="display:none" onchange="scanReceipt(event)">
+  <div id="rscan-loading" style="display:none;" class="lmsg"><div class="spin"></div> L'IA lit le reçu...</div>
+  <div id="rscan-result" style="display:none;margin-top:14px;">
+    <img id="rscan-img" style="width:100%;max-height:180px;object-fit:cover;border-radius:var(--rads);border:1.5px solid var(--rpp);margin-bottom:12px;display:none;">
+    <div class="scan-res"><h4 style="color:var(--gn);font-size:12px;margin-bottom:8px;">✅ Données extraites</h4><div id="rscan-fields"></div></div>
+    <div class="bgrp">
+      <button class="btn bg bfw" onclick="importReceiptToAchat()">📥 Ajouter aux achats</button>
+      <button class="btn bs bfw" onclick="resetRscan()">🔄 Scanner un autre</button>
+    </div>
+  </div>
+</div>
+
+<!-- RAPPORT -->
+<div id="fn-rapport" style="display:none;">
+  <div class="card">
+    <div class="ch"><span>📊</span><h2>Rapport mensuel</h2></div>
+    <div class="cb">
+      <div class="fr"><label>Mois à analyser</label>
+        <select id="rap-month" onchange="buildReport()"></select></div>
+      <div id="rap-content"></div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══ PAGE : CONTACTS ═══ -->
+
+<div id="p-cont" class="page">
+  <div class="ph"><h1>Contacts & Rappels</h1><p>Clients · Anniversaires · Alertes auto</p></div>
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab on" onclick="stab('contt','con-list')">👥 Contacts</div>
+      <div class="tab" onclick="stab('contt','con-add')">➕ Ajouter</div>
+      <div class="tab" onclick="stab('contt','con-alert')">🔔 Rappels</div>
+    </div>
+
+```
+<!-- LISTE -->
+<div id="con-list">
+  <input style="width:100%;padding:10px 14px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;margin-bottom:12px;" placeholder="🔍 Rechercher un client..." id="con-search" oninput="renderContacts()">
+  <div id="contacts-list"></div>
+</div>
+
+<!-- AJOUTER -->
+<div id="con-add" style="display:none;">
+  <div class="card">
+    <div class="ch"><span>👤</span><h2>Nouveau contact</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Prénom *</label><input id="cn-prenom" placeholder="Aminata"></div>
+        <div class="fr"><label>Nom *</label><input id="cn-nom" placeholder="Diallo"></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Téléphone</label><input id="cn-tel" placeholder="628 000 000"></div>
+        <div class="fr"><label>Email</label><input id="cn-email" placeholder="email@..."></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Type d'événement</label>
+          <select id="cn-type"><option>Anniversaire</option><option>Mariage</option><option>Baptême</option><option>Baby Shower</option><option>Entreprise</option><option>Fiançailles</option><option>Autre</option></select></div>
+        <div class="fr"><label>Date événement</label><input type="date" id="cn-date"></div>
+      </div>
+      <div class="fr"><label>Gâteau habituel</label>
+        <select id="cn-prod"><option value="">-- Choisir --</option></select></div>
+      <div class="fr"><label>Notes</label><textarea id="cn-notes" placeholder="Allergies, préférences, historique..." rows="2"></textarea></div>
+    </div>
+  </div>
+  <button class="btn bp bfw" onclick="saveContact()">💾 Enregistrer</button>
+  <div id="con-ok" style="display:none;margin-top:10px;" class="lmsg">✅ Contact enregistré !</div>
+</div>
+
+<!-- RAPPELS -->
+<div id="con-alert" style="display:none;">
+  <div id="alerts-list"></div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══ PAGE : LIGHT PALACE ═══ -->
+
+<div id="p-lp" class="page">
+  <div class="ph" style="background:linear-gradient(135deg,#2c3e6b,#1a2540);">
+    <h1>🏛️ Light Palace</h1>
+    <p>Réservations · Contrats · Charges · Calendrier</p>
+  </div>
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab on" onclick="stab('lpt','lp-cal')">📅 Calendrier</div>
+      <div class="tab" onclick="stab('lpt','lp-new')">➕ Réservation</div>
+      <div class="tab" onclick="stab('lpt','lp-charges')">💸 Charges</div>
+      <div class="tab" onclick="stab('lpt','lp-rapport')">📊 Bilan</div>
+    </div>
+
+```
+<!-- CALENDRIER -->
+<div id="lp-cal">
+  <div id="lp-calendar-nav" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <button class="btn bs bsm" onclick="lpPrevMonth()">◀</button>
+    <div id="lp-month-title" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#2c3e6b;"></div>
+    <button class="btn bs bsm" onclick="lpNextMonth()">▶</button>
+  </div>
+  <!-- Cal grid -->
+  <div id="lp-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:16px;"></div>
+  <!-- Legend -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;"><div style="width:12px;height:12px;border-radius:3px;background:#c04040;"></div>Réservé</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;"><div style="width:12px;height:12px;border-radius:3px;background:#f5e6c8;"></div>Acompte reçu</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;"><div style="width:12px;height:12px;border-radius:3px;background:#e8f5ec;"></div>Payé / Terminé</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;"><div style="width:12px;height:12px;border-radius:3px;background:#fce8ef;"></div>Aujourd'hui</div>
+  </div>
+  <!-- Prochaines réservations -->
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>🗓️</span><h2>Prochaines réservations</h2></div>
+    <div class="cb" id="lp-upcoming-list"></div>
+  </div>
+</div>
+
+<!-- NOUVELLE RÉSERVATION -->
+<div id="lp-new" style="display:none;">
+  <div id="lp-conflict-alert" style="display:none;padding:12px 14px;background:#fff0f0;border-left:4px solid #c04040;border-radius:var(--rads);margin-bottom:12px;font-size:13px;font-weight:600;color:#c04040;">
+    🚨 ALERTE DOUBLE RÉSERVATION ! Cette date est déjà prise.
+  </div>
+
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>👤</span><h2>Client / Organisateur</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Nom complet *</label><input id="lp-client" placeholder="Nom de l'organisateur"></div>
+        <div class="fr"><label>Téléphone</label><input id="lp-tel" placeholder="628 000 000"></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Email</label><input id="lp-email" placeholder="email@..."></div>
+        <div class="fr"><label>Type d'événement</label>
+          <select id="lp-event-type">
+            <option>Mariage</option><option>Anniversaire</option><option>Baptême</option>
+            <option>Conférence</option><option>Soirée privée</option><option>Baby Shower</option>
+            <option>Fiançailles</option><option>Autre</option>
+          </select></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>📅</span><h2>Date & Horaires</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Date de l'événement *</label>
+          <input type="date" id="lp-date" onchange="checkLPConflict()"></div>
+        <div class="fr"><label>Durée</label>
+          <select id="lp-duree">
+            <option>Demi-journée (6h)</option><option>Journée complète (12h)</option>
+            <option>Soirée (6h soir)</option><option>Week-end (2 jours)</option>
+          </select></div>
+      </div>
+      <div class="fgrid">
+        <div class="fr"><label>Heure début</label>
+          <input type="time" id="lp-hstart" value="10:00"></div>
+        <div class="fr"><label>Heure fin</label>
+          <input type="time" id="lp-hend" value="22:00"></div>
+      </div>
+      <div class="fr"><label>Nombre d'invités estimé</label>
+        <input id="lp-guests" type="number" placeholder="Ex: 200"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>💰</span><h2>Tarification</h2></div>
+    <div class="cb">
+      <div class="fgrid">
+        <div class="fr"><label>Location salle (GNF) ✏️</label>
+          <input id="lp-prix" type="number" value="12000000" oninput="calcLPSolde()"></div>
+        <div class="fr"><label>Tarif actuel par défaut</label>
+          <div style="padding:10px 12px;background:var(--gnb);border-radius:var(--rads);font-size:13px;font-weight:600;color:var(--gn);" id="lp-tarif-display">12 000 000 GNF</div>
+        </div>
+      </div>
+      <!-- Charges événement -->
+      <div style="border-top:1.5px solid var(--rp);padding-top:12px;margin-top:8px;">
+        <div style="font-size:11px;font-weight:600;color:#2c3e6b;margin-bottom:8px;">💸 CHARGES POUR CET ÉVÉNEMENT</div>
+        <div class="fgrid">
+          <div class="fr"><label>Nettoyage / agents (GNF)</label><input type="number" id="lp-c-nettoyage" value="0" oninput="calcLPSolde()"></div>
+          <div class="fr"><label>Parking (GNF)</label><input type="number" id="lp-c-parking" value="0" oninput="calcLPSolde()"></div>
+        </div>
+        <div class="fgrid">
+          <div class="fr"><label>Sécurité (GNF)</label><input type="number" id="lp-c-secu" value="0" oninput="calcLPSolde()"></div>
+          <div class="fr"><label>Électricité (GNF)</label><input type="number" id="lp-c-elec" value="0" oninput="calcLPSolde()"></div>
+        </div>
+        <div class="fgrid">
+          <div class="fr"><label>Décoration (GNF)</label><input type="number" id="lp-c-deco" value="0" oninput="calcLPSolde()"></div>
+          <div class="fr"><label>Sono / équipement (GNF)</label><input type="number" id="lp-c-sono" value="0" oninput="calcLPSolde()"></div>
+        </div>
+        <!-- Charges custom -->
+        <div id="lp-custom-charges"></div>
+        <button class="btn bs bsm" onclick="addLPCharge()" style="margin-top:4px;">➕ Ajouter une charge</button>
+      </div>
+
+      <div style="border-top:1.5px solid var(--rp);padding-top:12px;margin-top:8px;">
+        <div class="fgrid">
+          <div class="fr"><label>Acompte reçu (GNF)</label>
+            <input type="number" id="lp-acompte" value="0" oninput="calcLPSolde()"></div>
+          <div class="fr"><label>Solde restant 🤖</label>
+            <input id="lp-solde" class="auto" readonly></div>
+        </div>
+        <div class="fgrid">
+          <div class="fr"><label>Total charges 🤖</label>
+            <input id="lp-total-charges" class="auto" readonly></div>
+          <div class="fr"><label>Bénéfice net 🤖</label>
+            <input id="lp-benefice" class="auto" readonly></div>
+        </div>
+      </div>
+
+      <div class="fr"><label>Statut</label>
+        <select id="lp-statut">
+          <option>CONFIRMÉ</option><option>EN ATTENTE</option><option>ACOMPTE REÇU</option>
+          <option>PAYÉ INTÉGRALEMENT</option><option>ANNULÉ</option>
+        </select></div>
+      <div class="fr"><label>Notes / Demandes spéciales</label>
+        <textarea id="lp-notes" rows="2" placeholder="Décoration souhaitée, demandes particulières..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>📄</span><h2>Contrat</h2></div>
+    <div class="cb">
+      <div style="font-size:12px;color:#777;margin-bottom:12px;">Générez un contrat automatique OU uploadez votre propre contrat signé.</div>
+      <div class="bgrp">
+        <button class="btn bp bfw" style="background:#2c3e6b;" onclick="generateLPContract()">📄 Générer contrat automatique</button>
+      </div>
+      <div style="margin-top:10px;">
+        <label style="display:flex;align-items:center;gap:10px;padding:12px;border:2px dashed #b0c0e0;border-radius:var(--rads);cursor:pointer;background:#f0f4ff;">
+          <span style="font-size:24px;">📎</span>
+          <div><div style="font-size:13px;font-weight:500;color:#2c3e6b;">Uploader contrat signé (PDF/image)</div>
+          <div style="font-size:11px;color:#aaa;">PDF, JPG, PNG</div></div>
+          <input type="file" id="lp-contract-file" accept=".pdf,image/*" style="display:none" onchange="uploadLPContract(event)">
+        </label>
+        <div id="lp-contract-status" style="display:none;margin-top:8px;padding:8px 12px;background:var(--gnb);border-radius:var(--rads);font-size:12px;color:var(--gn);">✅ Contrat uploadé</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bgrp">
+    <button class="btn bfw" style="background:#2c3e6b;color:#fff;" onclick="saveLPReservation()">💾 Enregistrer la réservation</button>
+    <button class="btn bs bfw" onclick="newLPReservation()">🔄 Nouvelle réservation</button>
+    <button class="btn bfw" style="background:#1a4a7a;color:#fff;" onclick="showLPReceiptModal()">🧾 Générer reçu</button>
+  </div>
+  <div id="lp-ok" style="display:none;margin-top:10px;" class="lmsg">✅ Réservation enregistrée !</div>
+</div>
+
+<!-- CHARGES FIXES -->
+<div id="lp-charges" style="display:none;">
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>💸</span><h2>Charges fixes mensuelles — Light Palace</h2></div>
+    <div class="cb">
+      <div style="font-size:12px;color:#777;margin-bottom:12px;">Ces charges sont déduites du bénéfice mensuel de la salle.</div>
+      <div class="fr"><label>Entretien général / maintenance (GNF/mois)</label><input type="number" id="lpff-entretien" placeholder="0" oninput="saveLPFF()"></div>
+      <div class="fr"><label>Gardiennage permanent (GNF/mois)</label><input type="number" id="lpff-garde" placeholder="0" oninput="saveLPFF()"></div>
+      <div class="fr"><label>Électricité fixe (GNF/mois)</label><input type="number" id="lpff-elec" placeholder="0" oninput="saveLPFF()"></div>
+      <div class="fr"><label>Eau (GNF/mois)</label><input type="number" id="lpff-eau" placeholder="0" oninput="saveLPFF()"></div>
+      <div class="fr"><label>Internet / téléphone (GNF/mois)</label><input type="number" id="lpff-internet" placeholder="0" oninput="saveLPFF()"></div>
+      <div class="fr"><label>Assurance (GNF/mois)</label><input type="number" id="lpff-assurance" placeholder="0" oninput="saveLPFF()"></div>
+      <div id="lpff-custom"></div>
+      <button class="btn bs bsm" onclick="addLPFFCharge()" style="margin-top:4px;">➕ Ajouter une charge fixe</button>
+      <div style="background:#e8eef8;border-radius:var(--rads);padding:12px;margin-top:12px;display:flex;justify-content:space-between;">
+        <span style="font-weight:600;color:#2c3e6b;">Total charges fixes / mois</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#2c3e6b;" id="lpff-total">0 GNF</span>
+      </div>
+      <!-- Tarif par défaut -->
+      <div style="border-top:1.5px solid #dce4f0;padding-top:12px;margin-top:12px;">
+        <div style="font-size:11px;font-weight:600;color:#2c3e6b;margin-bottom:6px;">💰 TARIF LOCATION PAR DÉFAUT (modifiable par réservation)</div>
+        <input type="number" id="lp-default-tarif" value="12000000" placeholder="12000000" oninput="saveLPDefaultTarif()" style="width:100%;padding:10px 12px;border:1.5px solid #b0c0e0;border-radius:var(--rads);font-size:14px;">
+        <div style="font-size:11px;color:#aaa;margin-top:4px;">Modifié ici → se pré-remplit dans toutes les nouvelles réservations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BILAN LIGHT PALACE -->
+<div id="lp-rapport" style="display:none;">
+  <div class="card">
+    <div class="ch" style="background:#2c3e6b;"><span>📊</span><h2>Bilan Light Palace</h2></div>
+    <div class="cb">
+      <div class="fr"><label>Mois à analyser</label>
+        <select id="lp-rap-month" onchange="buildLPReport()"></select></div>
+      <div id="lp-rap-content"></div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══ PAGE : RÉGLAGES & SAUVEGARDE ═══ -->
+
+<div id="p-settings" class="page">
+  <div class="ph" style="background:linear-gradient(135deg,#3a2030,#5a3050);">
+    <h1>⚙️ Réglages & Sauvegarde</h1>
+    <p>Protéger vos données · Restaurer · Paramètres</p>
+  </div>
+  <div class="wrap">
+
+```
+<!-- SAUVEGARDE -->
+<div class="card">
+  <div class="ch"><span>💾</span><h2>Sauvegarde de vos données</h2></div>
+  <div class="cb">
+    <div style="font-size:13px;color:#777;margin-bottom:14px;line-height:1.6;">
+      Toutes vos données (commandes, contacts, catalogue, réservations LP) sont stockées dans votre navigateur. <strong>Sauvegardez régulièrement</strong> pour ne rien perdre si vous changez de téléphone ou videz le navigateur.
+    </div>
+    <div style="background:var(--gb);border-radius:var(--rads);padding:12px;margin-bottom:14px;font-size:12px;">
+      📊 <strong id="backup-stats">Calcul en cours...</strong>
+    </div>
+    <div class="bgrp">
+      <button class="btn bg bfw" onclick="exportBackup()">⬇️ Sauvegarder tout (.json)</button>
+      <button class="btn bs bfw" onclick="exportCSV2()">📊 Exporter factures (.csv)</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESTAURATION -->
+<div class="card">
+  <div class="ch"><span>🔄</span><h2>Restaurer une sauvegarde</h2></div>
+  <div class="cb">
+    <div style="font-size:13px;color:#777;margin-bottom:12px;">Importez un fichier de sauvegarde pour restaurer toutes vos données.</div>
+    <label style="display:flex;align-items:center;gap:10px;padding:14px;border:2px dashed var(--rpp);border-radius:var(--rads);cursor:pointer;background:var(--rp);">
+      <span style="font-size:28px;">📂</span>
+      <div><div style="font-size:13px;font-weight:600;color:var(--rt);">Choisir le fichier de sauvegarde</div>
+      <div style="font-size:11px;color:#aaa;">Fichier .json de sauvegarde Cake by Zazza</div></div>
+      <input type="file" id="restore-file" accept=".json" style="display:none" onchange="importBackup(event)">
+    </label>
+    <div id="restore-status" style="display:none;margin-top:10px;" class="lmsg"></div>
+  </div>
+</div>
+
+<!-- INFOS BOUTIQUE -->
+<div class="card">
+  <div class="ch"><span>🎂</span><h2>Informations de votre boutique</h2></div>
+  <div class="cb">
+    <div class="fr"><label>Nom de la boutique</label><input id="s-nom" value="Cake by Zazza" oninput="saveSettings()"></div>
+    <div class="fr"><label>Adresse</label><input id="s-adresse" value="Kipé T2, Conakry" oninput="saveSettings()"></div>
+    <div class="fr"><label>Téléphone 1</label><input id="s-tel1" value="628 559 844" oninput="saveSettings()"></div>
+    <div class="fr"><label>Téléphone 2</label><input id="s-tel2" value="611 000 094" oninput="saveSettings()"></div>
+    <div class="fr"><label>Email</label><input id="s-email" value="Zafguine@gmail.com" oninput="saveSettings()"></div>
+    <div class="fr"><label>Slogan</label><input id="s-slogan" value="Chaque gâteau est fait avec amour 💕" oninput="saveSettings()"></div>
+    <div style="font-size:11px;color:#aaa;margin-top:6px;">Ces informations apparaissent sur vos factures et contrats.</div>
+  </div>
+</div>
+
+<!-- DANGER ZONE -->
+<div class="card" style="border:1.5px solid var(--reb);">
+  <div class="ch" style="background:var(--re);"><span>⚠️</span><h2>Zone de danger</h2></div>
+  <div class="cb">
+    <p style="font-size:13px;color:#777;margin-bottom:12px;">Ces actions sont irréversibles. Sauvegardez d'abord !</p>
+    <button class="btn bd2 bfw" onclick="clearAllData()">🗑️ Effacer toutes les données</button>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- Modal reçu Light Palace -->
+
+<div class="mover" id="m-lp-receipt"><div class="modal">
+  <div class="mh" style="background:#2c3e6b;"><h3>Reçu Light Palace</h3><button class="mx" onclick="cm('m-lp-receipt')">✕</button></div>
+  <div class="mb"><div id="lp-receipt-content"></div>
+  <div class="bgrp"><button class="btn bfw" style="background:#2c3e6b;color:#fff;" onclick="printLPReceipt()">🖨️ Imprimer</button></div></div>
+</div></div>
+
+<!-- Modal contrat Light Palace -->
+
+<div class="mover" id="m-lp-contract"><div class="modal">
+  <div class="mh" style="background:#2c3e6b;"><h3>Contrat Light Palace</h3><button class="mx" onclick="cm('m-lp-contract')">✕</button></div>
+  <div class="mb"><div id="lp-contract-content"></div>
+  <div class="bgrp"><button class="btn bfw" style="background:#2c3e6b;color:#fff;" onclick="printLPContract()">🖨️ Imprimer / PDF</button></div></div>
+</div></div>
+
+<!-- Modal détail réservation LP -->
+
+<div class="mover" id="m-lp-det"><div class="modal">
+  <div class="mh" style="background:#2c3e6b;"><h3 id="m-lp-det-title">Réservation</h3><button class="mx" onclick="cm('m-lp-det')">✕</button></div>
+  <div class="mb" id="m-lp-det-body"></div>
+</div></div>
+
+<nav class="nav">
+  <button class="nb on" onclick="goPage('dash')"><span class="ic">📊</span>Bord</button>
+  <button class="nb" onclick="goPage('fac')"><span class="ic">🧾</span>Cmdes</button>
+  <button class="nb" onclick="goPage('lp')"><span class="ic">🏛️</span>Palace</button>
+  <button class="nb" onclick="goPage('cont')"><span class="ic">👥</span>Contacts</button>
+  <button class="nb" onclick="goPage('fin')"><span class="ic">💸</span>Finances</button>
+  <button class="nb" onclick="goPage('settings')"><span class="ic">⚙️</span>Réglages</button>
+</nav>
+
+<!-- ═══ MODALS ═══ -->
+
+<!-- Invoice preview -->
+
+<div class="mover" id="m-inv"><div class="modal">
+  <div class="mh"><h3>Aperçu facture</h3><button class="mx" onclick="cm('m-inv')">✕</button></div>
+  <div class="mb"><div id="inv-prev"></div>
+  <div class="bgrp"><button class="btn bp bfw" onclick="printInv()">🖨️ Imprimer / PDF</button></div></div>
+</div></div>
+
+<!-- Contact detail -->
+
+<div class="mover" id="m-con"><div class="modal">
+  <div class="mh"><h3 id="m-con-title">Contact</h3><button class="mx" onclick="cm('m-con')">✕</button></div>
+  <div class="mb" id="m-con-body"></div>
+</div></div>
+
+<!-- Invoice detail -->
+
+<div class="mover" id="m-inv-det"><div class="modal">
+  <div class="mh"><h3 id="m-inv-det-title">Facture</h3><button class="mx" onclick="cm('m-inv-det')">✕</button></div>
+  <div class="mb" id="m-inv-det-body"></div>
+</div></div>
+
+<!-- Catalog detail -->
+
+<div class="mover" id="m-cat-det"><div class="modal">
+  <div class="mh"><h3 id="m-cat-det-title">Produit</h3><button class="mx" onclick="cm('m-cat-det')">✕</button></div>
+  <div class="mb" id="m-cat-det-body"></div>
+</div></div>
+
+<script>
+// ═══════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════
+const S = {
+  get:(k,d=[])=>{try{return JSON.parse(localStorage.getItem('cbz_'+k))||d;}catch{return d;}},
+  set:(k,v)=>localStorage.setItem('cbz_'+k,JSON.stringify(v)),
+};
+
+let invoices  = S.get('invoices',[]);
+let products  = S.get('products',[]);
+let contacts  = S.get('contacts',[]);
+let achats    = S.get('achats',[]);
+let scanData  = null;
+let rscanData = null;
+let editProd  = null;
+let ings      = [];
+
+const MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+function fmt(n){if(!n&&n!==0)return'—';return new Intl.NumberFormat('fr-FR').format(Math.round(n))+' GNF';}
+function fmtDate(s){if(!s)return'—';const d=new Date(s);return isNaN(d)?s:`${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getFullYear()}`;}
+function nowISO(){return new Date().toISOString().split('T')[0];}
+function curMonth(){return new Date().getMonth();}
+function curYear(){return new Date().getFullYear();}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  const idx=['dash','fac','lp','cont','fin','settings'].indexOf(id);
+  document.querySelectorAll('.nb')[idx]?.classList.add('on');
+  window.scrollTo(0,0);
+  if(id==='dash')updateDash();
+  if(id==='fac'){renderArc();populateProdSelect();populateExpressCatalog();}
+  if(id==='cat')renderCatalog();
+  if(id==='fin'){loadFF();renderAchats();buildRapportMonths();}
+  if(id==='cont'){renderContacts();renderAlerts();populateConProdSelect();}
+  if(id==='lp'){loadLPFF();renderLPCalendar();renderLPUpcoming();buildLPReportMonths();}
+  if(id==='settings'){updateBackupStats();loadSettings();}
+}
+
+function stab(group, id){
+  // Find the target element
+  const target = document.getElementById(id);
+  if(!target) return;
+
+  // Hide all sibling content divs (those with an id, not tabs bar)
+  const parent = target.parentElement;
+  Array.from(parent.children).forEach(c => {
+    if(c.id && c.id !== id && !c.classList.contains('tabs') && c.tagName !== 'BUTTON') {
+      c.style.display = 'none';
+    }
+  });
+
+  // Show target
+  target.style.display = 'block';
+
+  // Update active tab highlight
+  const tabBtns = parent.querySelectorAll('.tab');
+  const contentDivs = Array.from(parent.children).filter(c => c.id && !c.classList.contains('tabs') && c.tagName !== 'BUTTON');
+  tabBtns.forEach((t, i) => {
+    t.classList.toggle('on', contentDivs[i]?.id === id);
+  });
+
+  // Side effects
+  if(id==='f-arc') renderArc();
+  if(id==='cat-view') renderCatalog();
+  if(id==='cat-share') renderShareList();
+  if(id==='fn-rapport') buildRapportMonths();
+  if(id==='con-alert') renderAlerts();
+  if(id==='fn-achats') renderAchats();
+  if(id==='lp-cal') { renderLPCalendar(); renderLPUpcoming(); }
+  if(id==='lp-charges') loadLPFF();
+  if(id==='lp-rapport') buildLPReportMonths();
+  if(id==='lp-new') {
+    const lpPrix = document.getElementById('lp-prix');
+    if(lpPrix && !lpPrix.value) lpPrix.value = getLPDefaultTarif();
+    calcLPSolde();
+  }
+}
+
+function cm(id){document.getElementById(id).classList.remove('on');}
+
+// ═══════════════════════════════════════
+// DEFAULT PRODUCTS
+// ═══════════════════════════════════════
+function initDefaults(){
+  if(products.length)return;
+  products=[
+    {id:1,nom:'Gâteau Design',cat:'Design',desc:'Gâteau décoré sur mesure',prix:{10:200000,20:350000,30:500000,plus:700000},cout:70000,ings:[{n:'Farine',q:500,u:'g',p:2000},{n:'Sucre',q:300,u:'g',p:1500},{n:'Beurre',q:200,u:'g',p:8000},{n:'Œufs',q:4,u:'unités',p:4000},{n:'Crème chantilly',q:250,u:'ml',p:12000},{n:'Colorants',q:1,u:'set',p:5000}],photo:''},
+    {id:2,nom:'Gâteau Crème',cat:'Crème',desc:'Gâteau à la crème au beurre',prix:{10:150000,20:250000,30:380000,plus:550000},cout:52000,ings:[{n:'Farine',q:500,u:'g',p:2000},{n:'Sucre',q:300,u:'g',p:1500},{n:'Beurre',q:300,u:'g',p:12000},{n:'Œufs',q:4,u:'unités',p:4000}],photo:''},
+    {id:3,nom:'Gâteau Mariage',cat:'Mariage',desc:'Gâteau élégant multi-étages',prix:{10:400000,20:600000,30:900000,plus:1200000},cout:140000,ings:[{n:'Farine',q:1000,u:'g',p:4000},{n:'Sucre',q:600,u:'g',p:3000},{n:'Beurre',q:400,u:'g',p:16000},{n:'Pâte à sucre',q:500,u:'g',p:20000},{n:'Déco',q:1,u:'set',p:30000}],photo:''},
+    {id:4,nom:'Gâteau Express',cat:'Autre',desc:'Gâteau simple rapide',prix:{10:80000,20:140000,30:200000,plus:280000},cout:28000,ings:[{n:'Farine',q:300,u:'g',p:1200},{n:'Sucre',q:200,u:'g',p:1000},{n:'Beurre',q:150,u:'g',p:6000}],photo:''},
+  ];
+  S.set('products',products);
+}
+
+// ═══════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════
+function updateDash(){
+  const m=curMonth(),y=curYear();
+  const mi=invoices.filter(i=>{const d=new Date(i.date);return d.getMonth()===m&&d.getFullYear()===y&&i.statut!=='ANNULÉ';});
+  const ca=mi.reduce((s,i)=>s+i.prix,0);
+  const couts=mi.reduce((s,i)=>s+(i.cout||0),0);
+  const ff=getFFTotal();
+  const ben=ca-couts-ff;
+  const marge=ca>0?ben/ca:0;
+
+  document.getElementById('v-ca').textContent=fmt(ca);
+  document.getElementById('v-ben').textContent=fmt(ben);
+  document.getElementById('v-cmd').textContent=mi.length;
+  document.getElementById('v-marge').textContent=Math.round(marge*100)+'%';
+  document.getElementById('k-ben').className='kpi '+(ben>0?'gd':'bd');
+  document.getElementById('k-marge').className='kpi '+(marge>=0.3?'gd':marge<0.1?'bd':'');
+  document.getElementById('db-month').textContent=MONTHS[m]+' '+y;
+
+  // Verdict
+  const vb=document.getElementById('verdict');
+  if(ca===0){vb.className='verdict vg';vb.textContent='Enregistrez vos premières commandes pour voir le verdict 🎯';}
+  else if(marge>=0.3){vb.className='verdict ve';vb.textContent='✅ EXCELLENT ! Marge > 30% — Cake by Zazza est très rentable !';}
+  else if(marge>=0.2){vb.className='verdict vg';vb.textContent='🟡 BON MOIS. Marge 20-30%. Rentable, encore optimisable.';}
+  else if(marge>=0.1){vb.className='verdict vw';vb.textContent='🟠 ATTENTION. Marge < 20%. Révisez vos prix ou coûts.';}
+  else{vb.className='verdict vd';vb.textContent='🔴 DANGER ! Vous perdez de l\'argent. Agissez maintenant !';}
+
+  buildChart();
+  buildTopProds(mi);
+  renderRappelsDash();
+  buildConseil(ca,marge,mi);
+}
+
+function buildChart(){
+  const now=new Date();
+  let months=[];
+  for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({m:d.getMonth(),y:d.getFullYear(),l:MONTHS[d.getMonth()].slice(0,3)});}
+  const data=months.map(mo=>{
+    const inv=invoices.filter(i=>{const d=new Date(i.date);return d.getMonth()===mo.m&&d.getFullYear()===mo.y&&i.statut!=='ANNULÉ';});
+    const ca=inv.reduce((s,i)=>s+i.prix,0);
+    const co=inv.reduce((s,i)=>s+(i.cout||0),0);
+    const ff=mo.m===now.getMonth()&&mo.y===now.getFullYear()?getFFTotal():0;
+    return{ca,ben:Math.max(0,ca-co-ff),l:mo.l};
+  });
+  const max=Math.max(...data.map(d=>d.ca),1);
+  document.getElementById('chart').innerHTML=data.map(d=>`
+    <div class="cbar-w">
+      <div style="display:flex;gap:2px;align-items:flex-end;height:100px;">
+        <div class="cbar" style="height:${Math.round((d.ca/max)*100)}px;flex:1;background:var(--rpp);" title="${fmt(d.ca)}"></div>
+        <div class="cbar" style="height:${Math.round((d.ben/max)*100)}px;flex:1;background:var(--gnb);" title="${fmt(d.ben)}"></div>
+      </div>
+      <div class="clbl">${d.l}</div>
+    </div>`).join('');
+}
+
+function buildTopProds(mi){
+  const counts={};
+  mi.forEach(i=>{counts[i.prodNom||i.gateau||'—']=(counts[i.prodNom||i.gateau||'—']||0)+1;});
+  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const el=document.getElementById('top-prods');
+  if(!sorted.length){el.innerHTML='<div class="empty"><div class="ic">🎂</div><h3>Pas encore de données</h3></div>';return;}
+  const max=sorted[0][1];
+  el.innerHTML=sorted.map(([n,c],i)=>`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <span style="font-size:11px;color:var(--rt);font-weight:600;width:16px;">${i+1}</span>
+      <div style="flex:1;">
+        <div style="font-size:12px;font-weight:600;">${n}</div>
+        <div style="height:6px;background:var(--rp);border-radius:3px;margin-top:4px;overflow:hidden;"><div style="height:100%;width:${Math.round((c/max)*100)}%;background:var(--rt);border-radius:3px;"></div></div>
+      </div>
+      <span style="font-size:11px;font-weight:600;color:var(--rt);">${c} cmd</span>
+    </div>`).join('');
+}
+
+function renderRappelsDash(){
+  const today=new Date();
+  const upcoming=contacts.filter(c=>{
+    if(!c.date)return false;
+    const ev=new Date(c.date);
+    const next=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());
+    if(next<today)next.setFullYear(today.getFullYear()+1);
+    const diff=Math.ceil((next-today)/(1000*60*60*24));
+    return diff<=30&&diff>=0;
+  });
+  document.getElementById('rappel-count').textContent=upcoming.length;
+  const el=document.getElementById('rappels-dash');
+  if(!upcoming.length){el.innerHTML='<div style="font-size:12px;color:#aaa;">Aucun événement dans les 30 prochains jours 🎉</div>';return;}
+  el.innerHTML=upcoming.slice(0,3).map(c=>{
+    const ev=new Date(c.date);
+    const next=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());
+    if(next<today)next.setFullYear(today.getFullYear()+1);
+    const diff=Math.ceil((next-today)/(1000*60*60*24));
+    const urgent=diff<=7;
+    return`<div class="li ${urgent?'bd':'wa'}" style="margin-bottom:8px;">
+      <div><h4>${c.prenom} ${c.nom}</h4><p>${c.type} · ${fmtDate(c.date.replace(/\d{4}/,new Date().getFullYear()))}</p></div>
+      <div style="text-align:right"><div class="amt" style="font-size:14px;color:${urgent?'var(--re)':'var(--go)'};">${diff}j</div><div style="font-size:10px;color:#aaa;">${c.tel||''}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function buildConseil(ca,marge,mi){
+  const el=document.getElementById('conseil');
+  const ff=getFFTotal();
+  let c='';
+  if(ca===0)c='🎂 Commencez par enregistrer vos premières commandes dans l\'onglet Commandes.';
+  else if(marge<0.15)c=`⚠️ Votre marge est de ${Math.round(marge*100)}%. Augmentez vos prix de 15% ou réduisez vos coûts d'ingrédients en commandant en gros.`;
+  else if(ff>ca*0.3)c='🏠 Vos charges fixes représentent plus de 30% de votre CA. Essayez de négocier votre loyer ou de trouver des fournisseurs moins chers.';
+  else if(mi.length<10)c='📦 Moins de 10 commandes ce mois. Publiez 1 photo par jour sur WhatsApp et Instagram pour attirer plus de clients.';
+  else c='🏆 Bonne performance ce mois ! Pensez à relancer vos clients du mois dernier pour fidéliser votre base clientèle.';
+  el.textContent=c;
+}
+
+// ═══════════════════════════════════════
+// FACTURES
+// ═══════════════════════════════════════
+function populateProdSelect(){
+  const sel=document.getElementById('fprod');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">-- Choisir produit --</option>'+products.map(p=>`<option value="${p.id}">${p.nom}</option>`).join('');
+  sel.value=cur;
+}
+
+function selectProd(){
+  const id=parseInt(document.getElementById('fprod').value);
+  const p=products.find(x=>x.id===id);
+  // Show/hide photo boxes
+  if(p&&p.photo&&p.photo.startsWith('data:')){
+    document.getElementById('model-photo-img').src=p.photo;
+    document.getElementById('model-photo-box').style.display='block';
+    document.getElementById('model-upload-box').style.display='none';
+  } else {
+    document.getElementById('model-photo-box').style.display='none';
+    document.getElementById('model-upload-box').style.display='block';
+  }
+  if(!p)return;
+  const tail=document.getElementById('ftail').value;
+  const tailKey={'10 parts':10,'20 parts':20,'30 parts':30,'Plus (30+)':'plus'}[tail]||10;
+  document.getElementById('fprix').value=p.prix[tailKey]||0;
+  calcSolde();
+  calcInvPrice();
+}
+
+// ─── ORDER TYPE (Classic / Express) ───
+let orderType = 'classic';
+let expressLines = []; // extra lines for express
+
+function setOrderType(type) {
+  orderType = type;
+  document.getElementById('mode-classic').style.display = type==='classic'?'block':'none';
+  document.getElementById('mode-express').style.display = type==='express'?'block':'none';
+  document.getElementById('btn-classic').className = 'btn '+(type==='classic'?'bp':'bs');
+  document.getElementById('btn-express').className = 'btn '+(type==='express'?'bp':'bs');
+  if(type==='express') calcExpressPrice();
+  else calcSolde();
+}
+
+// ─── TOGGLE EXPRESS/CLASSIC PRIX IN CATALOG ───
+function toggleExpressPrix(){
+  const isEx = document.getElementById('pcat').value === '⚡ Express';
+  document.getElementById('prix-classic-section').style.display = isEx ? 'none' : 'block';
+  document.getElementById('prix-express-section').style.display = isEx ? 'block' : 'none';
+}
+
+function populateExpressCatalog(){
+  const sel = document.getElementById('fex-catalog');
+  if(!sel) return;
+  const exProds = products.filter(p => p.cat === '⚡ Express');
+  sel.innerHTML = '<option value="">-- Choisir ou saisir manuellement --</option>' +
+    exProds.map(p => {
+      const prix = p.prix.moyen || p.prix.petit || p.prix[10] || 0;
+      return `<option value="${p.id}">${p.nom} · ${fmt(prix)}</option>`;
+    }).join('');
+}
+
+function selectExpressProd(){
+  const id = parseInt(document.getElementById('fex-catalog').value);
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('fextype').value = p.nom;
+  const tail = document.getElementById('fextail').value;
+  const prix = p.prix[tail] || p.prix.moyen || p.prix.petit || 0;
+  document.getElementById('fexunit').value = prix || '';
+  updateExpressTotal();
+}
+
+// Express prix par défaut (fallback si pas dans catalogue)
+const EXPRESS_PRIX = {
+  'Cupcake':{petit:15000,moyen:25000,grand:40000},
+  'Muffin':{petit:15000,moyen:25000,grand:35000},
+  'Mini-gâteau':{petit:50000,moyen:80000,grand:120000},
+  'Brownie':{petit:10000,moyen:20000,grand:30000},
+  'Tartelette':{petit:15000,moyen:25000,grand:40000},
+  'Beignet / Donut':{petit:10000,moyen:18000,grand:25000},
+  'Gâteau Express':{petit:80000,moyen:100000,grand:150000},
+  'Autre':{petit:50000,moyen:100000,grand:150000},
+};
+
+function calcExpressPrice() {
+  // Only suggest if field empty
+  const unitEl = document.getElementById('fexunit');
+  if(!unitEl.value) {
+    const type = document.getElementById('fextype').value;
+    const tail = document.getElementById('fextail').value;
+    unitEl.value = EXPRESS_PRIX[type]?.[tail] || '';
+  }
+  updateExpressTotal();
+}
+
+function updateExpressTotal() {
+  const qty = parseFloat(document.getElementById('fexqty').value)||1;
+  const unit = parseFloat(document.getElementById('fexunit').value)||0;
+  let total = qty * unit;
+  expressLines.forEach(l => {
+    const q = parseFloat(document.getElementById('elqty_'+l.id)?.value)||0;
+    const p = parseFloat(document.getElementById('elprix_'+l.id)?.value)||0;
+    total += q * p;
+  });
+  document.getElementById('express-total-display').textContent = fmt(total);
+  document.getElementById('fprix').value = total;
+  calcSolde();
+}
+
+function addExpressLine() {
+  const id = Date.now();
+  expressLines.push({id});
+  // Build catalog express options
+  const exProds = products.filter(p => p.cat === '⚡ Express');
+  const exOptions = exProds.map(p => `<option value="${p.id}">${p.nom}</option>`).join('');
+  const div = document.createElement('div');
+  div.id = 'eline_'+id;
+  div.style.cssText = 'background:var(--rp);border-radius:var(--rads);padding:10px;margin-bottom:8px;';
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+      <span style="font-size:11px;font-weight:600;color:var(--rt);">➕ Ligne supplémentaire</span>
+      <button onclick="removeExpressLine(${id})" style="background:none;border:none;color:var(--re);font-size:18px;cursor:pointer;">×</button>
+    </div>
+    ${exOptions?`<div class="fr" style="margin-bottom:8px;"><label style="font-size:10px;">Depuis catalogue</label>
+      <select onchange="fillLineFromCatalog(this,${id})" style="width:100%;padding:8px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;">
+        <option value="">-- Catalogue --</option>${exOptions}
+      </select></div>`:''}
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;">
+      <div class="fr" style="margin:0"><label style="font-size:10px;">Produit ✏️</label>
+        <input id="eltype_${id}" placeholder="Nom produit" style="width:100%;padding:8px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;"></div>
+      <div class="fr" style="margin:0"><label style="font-size:10px;">Qté</label>
+        <input id="elqty_${id}" type="number" value="1" style="width:100%;padding:8px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;" oninput="updateExpressTotal()"></div>
+      <div class="fr" style="margin:0"><label style="font-size:10px;">Prix/u ✏️</label>
+        <input id="elprix_${id}" type="number" placeholder="0" style="width:100%;padding:8px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;" oninput="updateExpressTotal()"></div>
+    </div>`;
+  document.getElementById('express-extra-lines').appendChild(div);
+}
+
+function fillLineFromCatalog(sel, lineId){
+  const id = parseInt(sel.value);
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('eltype_'+lineId).value = p.nom;
+  const prix = p.prix.moyen || p.prix.petit || 0;
+  document.getElementById('elprix_'+lineId).value = prix || '';
+  updateExpressTotal();
+}
+
+function removeExpressLine(id) {
+  expressLines = expressLines.filter(l=>l.id!==id);
+  const el = document.getElementById('eline_'+id);
+  if(el) el.remove();
+  updateExpressTotal();
+}
+
+function resetExpressLines() {
+  expressLines = [];
+  document.getElementById('express-extra-lines').innerHTML = '';
+  document.getElementById('fexqty').value = 1;
+  document.getElementById('fexunit').value = '';
+  document.getElementById('fextype').value = '';
+  if(document.getElementById('fex-catalog')) document.getElementById('fex-catalog').value = '';
+  document.getElementById('express-total-display').textContent = '0 GNF';
+}
+
+function getExpressDescription() {
+  if(orderType !== 'express') return '';
+  const type = document.getElementById('fextype').value || 'Produit Express';
+  const tail = document.getElementById('fextail').value;
+  const qty = document.getElementById('fexqty').value;
+  let desc = `⚡ ${type} (${tail}) × ${qty}`;
+  expressLines.forEach(l => {
+    const t = document.getElementById('eltype_'+l.id)?.value||'';
+    const q = document.getElementById('elqty_'+l.id)?.value||'';
+    if(t&&q) desc += ` + ${t} × ${q}`;
+  });
+  return desc;
+}
+
+function changeModelPhoto(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{document.getElementById('model-photo-img').src=ev.target.result;};
+  r.readAsDataURL(f);
+}
+
+function uploadManualPhoto(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    document.getElementById('model-photo-img').src=ev.target.result;
+    document.getElementById('model-photo-box').style.display='block';
+    document.getElementById('model-upload-box').style.display='none';
+  };
+  r.readAsDataURL(f);
+}
+
+function getModelPhoto(){
+  const img=document.getElementById('model-photo-img');
+  return(img&&img.src&&img.src.length>100)?img.src:'';
+}
+
+function resetModelPhoto(){
+  document.getElementById('model-photo-img').src='';
+  document.getElementById('model-photo-box').style.display='none';
+  document.getElementById('model-upload-box').style.display='block';
+  document.getElementById('model-photo-input').value='';
+  document.getElementById('model-photo-manual').value='';
+}
+
+function calcInvPrice(){
+  const id=parseInt(document.getElementById('fprod').value);
+  const p=products.find(x=>x.id===id);
+  if(!p)return;
+  const tail=document.getElementById('ftail').value;
+  const mult={'10 parts':1,'20 parts':2,'30 parts':3,'Plus (30+)':4}[tail]||1;
+  const prix=p.prix[{'10 parts':10,'20 parts':20,'30 parts':30,'Plus (30+)':'plus'}[tail]]||0;
+  const cout=p.cout*mult;
+  document.getElementById('fprix').value=prix;
+  document.getElementById('fcout').value=fmt(cout);
+  document.getElementById('fcout').dataset.raw=cout;
+  calcSolde();
+}
+
+function calcSolde(){
+  const prix=parseFloat(document.getElementById('fprix').value)||0;
+  const acomp=parseFloat(document.getElementById('facomp').value)||0;
+  const cout=parseFloat(document.getElementById('fcout').dataset.raw)||prix*0.62;
+  const solde=Math.max(0,prix-acomp);
+  const marge=prix>0?(prix-cout)/prix:0;
+  document.getElementById('fsold').value=fmt(solde);
+  document.getElementById('fsold').dataset.raw=solde;
+  document.getElementById('fmarge').value=Math.round(marge*100)+'%';
+  updinv();
+}
+
+function updinv(){}
+
+function genNum(){
+  const d=new Date();
+  const m=MONTHS[d.getMonth()].slice(0,3).toUpperCase();
+  const n=invoices.filter(i=>{const x=new Date(i.date);return x.getMonth()===d.getMonth()&&x.getFullYear()===d.getFullYear();}).length+1;
+  return`${m}-${d.getFullYear()}-${String(n).padStart(3,'0')}`;
+}
+
+function saveInv(){
+  const client=document.getElementById('fc').value.trim();
+  if(!client){alert('Nom du client requis.');return;}
+  let prodNom, taille, cout, prix;
+  if(orderType==='express'){
+    prodNom = getExpressDescription() || document.getElementById('fextype').value;
+    taille = document.getElementById('fextail').value;
+    prix = parseFloat(document.getElementById('fprix').value)||0;
+    cout = prix * 0.45; // estimation coût express
+  } else {
+    const prodId=parseInt(document.getElementById('fprod').value);
+    const prod=products.find(p=>p.id===prodId);
+    const tail=document.getElementById('ftail').value;
+    const mult={'10 parts':1,'20 parts':2,'30 parts':3,'Plus (30+)':4}[tail]||1;
+    prodNom = prod?prod.nom:'—';
+    taille = tail;
+    cout = prod?(prod.cout*mult):0;
+    prix = parseFloat(document.getElementById('fprix').value)||0;
+  }
+  const inv={
+    id:Date.now(), num:genNum(),
+    docType:document.getElementById('fdt').value,
+    client, tel:document.getElementById('ft2').value,
+    event:document.getElementById('fev').value,
+    date:document.getElementById('fd').value||nowISO(),
+    orderType,
+    gateau: prodNom,
+    prodNom,
+    taille,
+    genoise: orderType==='classic'?document.getElementById('fgen').value:'',
+    creme: orderType==='classic'?document.getElementById('fcrem').value:'',
+    perso:document.getElementById('fperso').value,
+    prix, cout,
+    acompte:parseFloat(document.getElementById('facomp').value)||0,
+    statut:document.getElementById('fstat').value,
+    rem:document.getElementById('frem').value,
+    modelPhoto:getModelPhoto(),
+    month:MONTHS[new Date().getMonth()],
+  };
+  invoices.unshift(inv);
+  S.set('invoices',invoices);
+  const ok=document.getElementById('inv-ok');
+  ok.style.display='flex';setTimeout(()=>ok.style.display='none',3000);
+  updateDash();
+}
+
+function newInv(){
+  ['fc','ft2','fev','fperso','frem'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fd').value=nowISO();
+  document.getElementById('fdt').value='FACTURE';
+  document.getElementById('fprod').value='';
+  document.getElementById('ftail').value='10 parts';
+  document.getElementById('fgen').value='';
+  document.getElementById('fcrem').value='';
+  document.getElementById('fprix').value='';
+  document.getElementById('facomp').value='0';
+  document.getElementById('fstat').value='EN COURS';
+  document.getElementById('fcout').value='';
+  document.getElementById('fcout').dataset.raw=0;
+  document.getElementById('fsold').value='';
+  document.getElementById('fmarge').value='';
+  resetModelPhoto();
+  resetExpressLines();
+  setOrderType('classic');
+}
+
+
+function showInvModal(){
+  const inv=buildCurrentInv();
+  document.getElementById('inv-prev').innerHTML=buildInvHTML(inv);
+  document.getElementById('m-inv').classList.add('on');
+}
+
+function buildCurrentInv(){
+  const prodId=parseInt(document.getElementById('fprod').value);
+  const prod=products.find(p=>p.id===prodId);
+  const prix=parseFloat(document.getElementById('fprix').value)||0;
+  const acompte=parseFloat(document.getElementById('facomp').value)||0;
+  return{num:genNum(),docType:document.getElementById('fdt').value,
+    client:document.getElementById('fc').value||'Client',
+    tel:document.getElementById('ft2').value,
+    event:document.getElementById('fev').value,
+    date:document.getElementById('fd').value||nowISO(),
+    gateau:prod?prod.nom:'Gâteau',taille:document.getElementById('ftail').value,
+    genoise:document.getElementById('fgen').value,creme:document.getElementById('fcrem').value,
+    perso:document.getElementById('fperso').value,prix,acompte,
+    statut:document.getElementById('fstat').value,rem:document.getElementById('frem').value};
+}
+
+function buildInvHTML(inv){
+  const solde=Math.max(0,inv.prix-(inv.acompte||0));
+  return`<div class="inv-print">
+    <div class="inv-brand">
+      <h1>🎂 CAKE BY ZAZZA</h1>
+      <p>Kipé T2, Conakry · 628 559 844 / 611 000 094 · Zafguine@gmail.com</p>
+      <div class="dtype">${inv.docType||'FACTURE'}</div>
+      <div style="font-size:11px;color:#aaa;margin-top:5px;">N° ${inv.num} — ${fmtDate(inv.date)}</div>
+    </div>
+    <div class="inv-meta">
+      <div><h4>Client</h4><p>${inv.client}</p><p style="font-size:11px;color:#aaa">${inv.tel||''}</p><p style="font-size:11px;color:#aaa">${inv.event||''}</p></div>
+      <div><h4>Statut</h4><p><span class="badge bro">${inv.statut||'EN COURS'}</span></p></div>
+    </div>
+    ${inv.modelPhoto?`<div style="margin-bottom:14px;"><div style="font-size:10px;text-transform:uppercase;color:#aaa;letter-spacing:.5px;margin-bottom:6px;">📸 Modèle de référence</div><img src="${inv.modelPhoto}" style="width:100%;max-height:180px;object-fit:cover;border-radius:10px;border:1.5px solid #f9d0df;"></div>`:''}
+    <table class="inv-table">
+      <thead><tr><th>Description</th><th>Détails</th><th style="text-align:right">Prix</th></tr></thead>
+      <tbody>
+        <tr><td>${inv.gateau||'Gâteau'}</td><td>${inv.taille||''}${inv.genoise?' · '+inv.genoise:''}${inv.creme?' · '+inv.creme:''}</td><td style="text-align:right">${fmt(inv.prix)}</td></tr>
+        ${inv.perso?`<tr><td colspan="3" style="font-size:11px;color:#aaa;">✏️ ${inv.perso}</td></tr>`:''}
+      </tbody>
+    </table>
+    <div style="display:flex;justify-content:space-between;padding:8px 10px;background:var(--nu);border-radius:8px;font-size:12px;margin-bottom:8px;">
+      <span>Acompte reçu</span><span style="font-weight:600;color:var(--gn)">${fmt(inv.acompte||0)}</span>
+    </div>
+    <div class="inv-totbox"><div><div class="lbl">Solde restant à payer</div></div><div class="val">${fmt(solde)}</div></div>
+    ${inv.rem?`<div style="margin-top:10px;font-size:11px;color:#aaa;padding:8px;background:var(--nu);border-radius:8px;">📝 ${inv.rem}</div>`:''}
+    <div class="inv-imp"><strong>⚠️ Important :</strong><br>📍 Pas de livraison — récupérez en boutique.<br>💳 Solde à régler avant remise de la commande.<br>✨ Ces conditions garantissent une expérience fluide.</div>
+    <div style="text-align:center;font-size:9px;color:#ccc;margin-top:12px;font-style:italic;">Chaque gâteau est fait avec amour 💕 — Cake by Zazza © 2026</div>
+  </div>`;
+}
+
+function printInv(){
+  const c=document.getElementById('inv-prev').innerHTML;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Facture</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;padding:15px;max-width:580px;margin:0 auto;}.inv-brand{text-align:center;padding-bottom:12px;border-bottom:2px solid #f9d0df;margin-bottom:12px;}.inv-brand h1{font-size:22px;color:#8b3a5a;}.dtype{font-size:16px;font-weight:700;color:#c06080;letter-spacing:2px;margin-top:6px;text-transform:uppercase;}.inv-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}.inv-meta h4{font-size:9px;text-transform:uppercase;color:#aaa;}.inv-table{width:100%;border-collapse:collapse;margin-bottom:10px;}.inv-table th{background:#fce8ef;padding:6px 8px;font-size:9px;text-align:left;text-transform:uppercase;color:#8b3a5a;}.inv-table td{padding:6px 8px;border-bottom:1px solid #fce8ef;font-size:11px;}.inv-totbox{background:#8b3a5a;color:white;padding:10px 12px;display:flex;justify-content:space-between;border-radius:8px;}.inv-imp{margin-top:10px;background:#fce8ef;padding:8px;font-size:9px;border-radius:6px;}.badge{background:#fce8ef;color:#8b3a5a;padding:1px 7px;border-radius:10px;font-size:9px;}@media print{@page{size:A4;margin:12mm;}}</style></head><body>${c}</body></html>`);
+
+w.document.close();w.focus();setTimeout(()=>w.print(),400);
+}
+
+function renderArc(){
+const fm=document.getElementById(‘arc-month’)?.value||’’;
+const fs=document.getElementById(‘arc-stat’)?.value||’’;
+let list=[…invoices];
+if(fm)list=list.filter(i=>i.month===fm);
+if(fs)list=list.filter(i=>i.statut===fs);
+const el=document.getElementById(‘arc-list’);
+if(!list.length){el.innerHTML=`<div class="empty"><div class="ic">📭</div><h3>Aucune commande</h3></div>`;return;}
+el.innerHTML=list.map(inv=>{
+const sc=inv.statut===‘LIVRÉ’?‘gd’:inv.statut===‘ANNULÉ’?‘bd’:‘wa’;
+const bc=inv.statut===‘LIVRÉ’?‘bgn’:inv.statut===‘ANNULÉ’?‘bre’:‘bgo2’;
+return`<div class="li ${sc}" onclick="showInvDet(${inv.id})"> <div><h4>${inv.client}</h4><p>${inv.num} · ${fmtDate(inv.date)} · ${inv.prodNom||inv.gateau}</p><span class="badge ${bc}" style="margin-top:3px">${inv.statut}</span></div> <div style="text-align:right"><div class="amt">${fmt(inv.prix)}</div><div style="font-size:10px;color:var(--re)">Solde: ${fmt(Math.max(0,inv.prix-inv.acompte))}</div></div> </div>`;
+}).join(’’);
+}
+
+function showInvDet(id){
+const inv=invoices.find(i=>i.id===id);
+if(!inv)return;
+document.getElementById(‘m-inv-det-title’).textContent=inv.docType+’ — ’+inv.client;
+document.getElementById(‘m-inv-det-body’).innerHTML=buildInvHTML(inv)+`<div class="bgrp" style="margin-top:14px;">
+<button class="btn bgo bsm" onclick="printInvById(${id})">🖨️ Imprimer</button>
+<button class="btn bs bsm" onclick="editInvStatus(${id})">✏️ Changer statut</button>
+<button class="btn bd2 bsm" onclick="delInv(${id})">🗑️ Supprimer</button>
+
+  </div>`;
+  document.getElementById('m-inv-det').classList.add('on');
+}
+
+function printInvById(id){const inv=invoices.find(i=>i.id===id);if(!inv)return;const w=window.open(’’,’_blank’);w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Facture</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;padding:15px;max-width:580px;margin:0 auto;}.inv-brand{text-align:center;padding-bottom:12px;border-bottom:2px solid #f9d0df;margin-bottom:12px;}.inv-brand h1{font-size:22px;color:#8b3a5a;}.dtype{font-size:16px;font-weight:700;color:#c06080;letter-spacing:2px;margin-top:6px;text-transform:uppercase;}.inv-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}.inv-meta h4{font-size:9px;text-transform:uppercase;color:#aaa;}.inv-table{width:100%;border-collapse:collapse;margin-bottom:10px;}.inv-table th{background:#fce8ef;padding:6px 8px;font-size:9px;text-align:left;}.inv-table td{padding:6px 8px;border-bottom:1px solid #fce8ef;font-size:11px;}.inv-totbox{background:#8b3a5a;color:white;padding:10px 12px;display:flex;justify-content:space-between;border-radius:8px;}.inv-imp{margin-top:10px;background:#fce8ef;padding:8px;font-size:9px;border-radius:6px;}@media print{@page{size:A4;margin:12mm;}}</style></head><body>${buildInvHTML(inv)}</body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),400);}
+
+function editInvStatus(id){
+const inv=invoices.find(i=>i.id===id);if(!inv)return;
+const s=prompt(‘Nouveau statut:\n1. EN COURS\n2. CONFIRMÉ\n3. EN PRÉPARATION\n4. LIVRÉ\n5. ANNULÉ\n6. ACOMPTE REÇU\n\nEntrez le numéro:’);
+const opts=[‘EN COURS’,‘CONFIRMÉ’,‘EN PRÉPARATION’,‘LIVRÉ’,‘ANNULÉ’,‘ACOMPTE REÇU’];
+const n=parseInt(s)-1;
+if(n>=0&&n<opts.length){inv.statut=opts[n];S.set(‘invoices’,invoices);cm(‘m-inv-det’);renderArc();updateDash();}
+}
+
+function delInv(id){
+if(!confirm(‘Supprimer cette commande ?’))return;
+invoices=invoices.filter(i=>i.id!==id);S.set(‘invoices’,invoices);cm(‘m-inv-det’);renderArc();updateDash();
+}
+
+// ═══════════════════════════════════════
+// CATALOGUE
+// ═══════════════════════════════════════
+function previewPhoto(e){
+const f=e.target.files[0];if(!f)return;
+const r=new FileReader();
+r.onload=ev=>{document.getElementById(‘prev-img’).src=ev.target.result;document.getElementById(‘photo-preview’).style.display=‘block’;};
+r.readAsDataURL(f);
+}
+
+function addIng(ing={}){
+const id=‘ing_’+Date.now();
+ings.push({id,…ing});
+const div=document.createElement(‘div’);
+div.className=‘ing-row’;div.id=‘ir_’+id;
+div.innerHTML=`<input placeholder="Ingrédient (ex: Farine)" value="${ing.n||''}" oninput="updIng('${id}','n',this.value);calcRevient()"> <input class="qty" type="number" placeholder="Qté" value="${ing.q||''}" oninput="updIng('${id}','q',parseFloat(this.value)||0);calcRevient()"> <input class="unit" placeholder="Unité" value="${ing.u||'g'}" oninput="updIng('${id}','u',this.value)"> <input class="qty" type="number" placeholder="Coût" value="${ing.p||''}" oninput="updIng('${id}','p',parseFloat(this.value)||0);calcRevient()"> <button class="del" onclick="delIng('${id}')">×</button>`;
+document.getElementById(‘ings-list’).appendChild(div);
+}
+
+function updIng(id,field,val){const i=ings.find(x=>x.id===id);if(i)i[field]=val;}
+function delIng(id){ings=ings.filter(x=>x.id!==id);const el=document.getElementById(‘ir_’+id);if(el)el.remove();calcRevient();}
+
+function calcRevient(){
+const cout=ings.reduce((s,i)=>s+(parseFloat(i.p)||0),0);
+const p10=parseFloat(document.getElementById(‘pp10’).value)||0;
+const marge=p10>0?Math.round((p10-cout)/p10*100):0;
+document.getElementById(‘p-cout’).textContent=fmt(cout);
+document.getElementById(‘p-marge’).textContent=marge+’%’;
+document.getElementById(‘p-marge’).style.color=marge>=30?‘var(–gn)’:marge<10?‘var(–re)’:‘var(–go)’;
+}
+
+function saveProduct(){
+const nom=document.getElementById(‘pnom’).value.trim();
+if(!nom){alert(‘Nom du produit requis.’);return;}
+const cat=document.getElementById(‘pcat’).value;
+const isExpress = cat === ‘⚡ Express’;
+const cout=ings.reduce((s,i)=>s+(parseFloat(i.p)||0),0);
+const photo=document.getElementById(‘prev-img’).src;
+const prix = isExpress ? {
+petit: parseFloat(document.getElementById(‘pp-petit’).value)||0,
+moyen: parseFloat(document.getElementById(‘pp-moyen’).value)||0,
+grand: parseFloat(document.getElementById(‘pp-grand’).value)||0,
+10: parseFloat(document.getElementById(‘pp-moyen’).value)||0, // fallback
+} : {
+10:parseFloat(document.getElementById(‘pp10’).value)||0,
+20:parseFloat(document.getElementById(‘pp20’).value)||0,
+30:parseFloat(document.getElementById(‘pp30’).value)||0,
+plus:parseFloat(document.getElementById(‘ppplus’).value)||0,
+};
+const prod={
+id:editProd||Date.now(),
+nom, cat, desc:document.getElementById(‘pdesc’).value,
+prix, cout, ings:[…ings],
+photo:photo&&photo.startsWith(‘data:’)?photo:’’,
+isExpress,
+};
+if(editProd){const i=products.findIndex(p=>p.id===editProd);if(i>=0)products[i]=prod;else products.unshift(prod);}
+else products.unshift(prod);
+S.set(‘products’,products);
+editProd=null;ings=[];
+document.getElementById(‘ings-list’).innerHTML=’’;
+document.getElementById(‘pnom’).value=’’;document.getElementById(‘pdesc’).value=’’;
+[‘pp10’,‘pp20’,‘pp30’,‘ppplus’,‘pp-petit’,‘pp-moyen’,‘pp-grand’].forEach(id=>{const el=document.getElementById(id);if(el)el.value=’’;});
+document.getElementById(‘photo-preview’).style.display=‘none’;
+document.getElementById(‘prix-classic-section’).style.display=‘block’;
+document.getElementById(‘prix-express-section’).style.display=‘none’;
+document.getElementById(‘pcat’).value=‘Design’;
+const ok=document.getElementById(‘prod-ok’);ok.style.display=‘flex’;setTimeout(()=>ok.style.display=‘none’,3000);
+populateProdSelect();
+populateExpressCatalog();
+stab(‘ct’,‘cat-view’);renderCatalog();
+}
+
+function renderCatalog(){
+const filter=document.getElementById(‘cat-filter’)?.value||’’;
+// Update filter options to include Express
+const filterSel=document.getElementById(‘cat-filter’);
+if(filterSel&&!filterSel.innerHTML.includes(‘Express’)){
+const opt=document.createElement(‘option’);opt.value=‘⚡ Express’;opt.textContent=‘⚡ Express’;
+filterSel.appendChild(opt);
+}
+let list=filter?products.filter(p=>p.cat===filter):products;
+const el=document.getElementById(‘cat-grid’);
+if(!list.length){el.innerHTML=’<div class="empty" style="grid-column:1/-1"><div class="ic">🎂</div><h3>Aucun produit</h3><p>Ajoutez votre premier produit</p></div>’;return;}
+el.innerHTML=list.map(p=>{
+const isEx=p.cat===‘⚡ Express’;
+const displayPrix=isEx?(p.prix.petit||0):(p.prix[10]||0);
+const displayMarge=displayPrix>0?Math.round((displayPrix-p.cout)/displayPrix*100):0;
+const priceLabel=isEx?`Petit: ${fmt(p.prix.petit||0)}`:`dès ${fmt(displayPrix)}`;
+return`<div class="cat-card" onclick="showCatDet(${p.id})"> <div class="cat-img">${p.photo&&p.photo.startsWith('data:')?`<img src="${p.photo}" style="width:100%;height:100%;object-fit:cover;">`:(isEx?'⚡':'🎂')}</div> <div class="cat-info"> <span class="badge ${isEx?'bgo2':'bro'}" style="font-size:9px;">${p.cat}</span> <div class="cat-name" style="margin-top:4px;">${p.nom}</div> <div class="cat-price">${priceLabel}</div> <div class="cat-cost">Coût: ${fmt(p.cout)} · Marge: ${displayMarge}%</div> </div> </div>`;
+}).join(’’);
+}
+
+function showCatDet(id){
+const p=products.find(x=>x.id===id);if(!p)return;
+const isEx=p.cat===‘⚡ Express’;
+document.getElementById(‘m-cat-det-title’).textContent=p.nom;
+const prixRows = isEx ?
+[[‘Petit’,p.prix.petit||0],[‘Moyen’,p.prix.moyen||0],[‘Grand’,p.prix.grand||0]] :
+[[‘10 parts’,p.prix[10]||0],[‘20 parts’,p.prix[20]||0],[‘30 parts’,p.prix[30]||0],[‘Plus 30+’,p.prix.plus||0]];
+document.getElementById(‘m-cat-det-body’).innerHTML=` ${p.photo&&p.photo.startsWith('data:')?`<img src="${p.photo}" style="width:100%;max-height:180px;object-fit:cover;border-radius:var(--rad);margin-bottom:12px;">`:''} <div style="margin-bottom:12px;"><span class="badge ${isEx?'bgo2':'bro'}">${p.cat}</span></div> <p style="font-size:13px;color:#777;margin-bottom:14px;">${p.desc||''}</p> <div style="font-size:11px;font-weight:600;color:var(--rt);margin-bottom:8px;">💰 PRIX DE VENTE${isEx?' (par taille)':' (par parts)'}</div> ${prixRows.map(([t,v])=>`
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--rp);font-size:12px;">
+<span>${t}</span><span style="font-weight:600;color:var(--gn)">${fmt(v)}</span>
+</div>`).join('')} <div style="background:var(--gnb);border-radius:var(--rads);padding:10px;margin-top:10px;display:flex;justify-content:space-between;"> <span style="font-size:12px;">Coût de revient</span> <span style="font-weight:600;color:var(--gn)">${fmt(p.cout)}</span> </div> ${p.ings&&p.ings.length?`<div style="margin-top:12px;"><div style="font-size:11px;font-weight:600;color:var(--rt);margin-bottom:6px;">🧾 RECETTE</div>
+${p.ings.map(i=>`<div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--rp);"><span>${i.n}</span><span style="color:#777">${i.q} ${i.u} · ${fmt(i.p)}</span></div>`).join(’’)}
+</div>`:''} <div class="bgrp" style="margin-top:14px;"> <button class="btn bs bsm" onclick="editProduct(${id})">✏️ Modifier les prix</button> <button class="btn bd2 bsm" onclick="delProduct(${id})">🗑️ Supprimer</button> </div>`;
+document.getElementById(‘m-cat-det’).classList.add(‘on’);
+}
+
+function editProduct(id){
+const p=products.find(x=>x.id===id);if(!p)return;
+cm(‘m-cat-det’);
+const isEx=p.cat===‘⚡ Express’;
+editProd=id;ings=[…p.ings||[]];
+document.getElementById(‘pnom’).value=p.nom;
+document.getElementById(‘pcat’).value=p.cat;
+document.getElementById(‘pdesc’).value=p.desc||’’;
+if(isEx){
+document.getElementById(‘pp-petit’).value=p.prix.petit||’’;
+document.getElementById(‘pp-moyen’).value=p.prix.moyen||’’;
+document.getElementById(‘pp-grand’).value=p.prix.grand||’’;
+document.getElementById(‘prix-classic-section’).style.display=‘none’;
+document.getElementById(‘prix-express-section’).style.display=‘block’;
+} else {
+document.getElementById(‘pp10’).value=p.prix[10]||’’;
+document.getElementById(‘pp20’).value=p.prix[20]||’’;
+document.getElementById(‘pp30’).value=p.prix[30]||’’;
+document.getElementById(‘ppplus’).value=p.prix.plus||’’;
+document.getElementById(‘prix-classic-section’).style.display=‘block’;
+document.getElementById(‘prix-express-section’).style.display=‘none’;
+}
+if(p.photo&&p.photo.startsWith(‘data:’)){document.getElementById(‘prev-img’).src=p.photo;document.getElementById(‘photo-preview’).style.display=‘block’;}
+else document.getElementById(‘photo-preview’).style.display=‘none’;
+document.getElementById(‘ings-list’).innerHTML=’’;
+ings.forEach(i=>addIng(i));
+calcRevient();
+stab(‘ct’,‘cat-edit’);
+}
+
+function delProduct(id){
+if(!confirm(‘Supprimer ce produit ?’))return;
+products=products.filter(p=>p.id!==id);S.set(‘products’,products);cm(‘m-cat-det’);renderCatalog();
+}
+
+function renderShareList(){
+const el=document.getElementById(‘share-list’);
+if(!products.length){el.innerHTML=’<div class="empty"><div class="ic">🎂</div><h3>Aucun produit</h3></div>’;return;}
+el.innerHTML=products.map(p=>` <div class="cat-share-item"> <div class="cat-share-thumb">${p.photo&&p.photo.startsWith('data:')?`<img src="${p.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`:'🎂'}</div> <div style="flex:1;"> <div style="font-size:13px;font-weight:600;color:var(--rt);">${p.nom}</div> <div style="font-size:11px;color:#aaa;">${p.cat}</div> <div style="font-size:12px;font-weight:600;color:var(--gn);margin-top:3px;">Dès ${fmt(p.prix[10])}</div> </div> </div>`).join(’’);
+}
+
+function shareCatalogWA(){
+const lines=[‘🎂 *CAKE BY ZAZZA*’,’*Kipé T2, Conakry · 628 559 844*’,’’,’*Notre Catalogue 2026 :*’,’’];
+products.forEach(p=>{lines.push(`🎂 *${p.nom}* (${p.cat})`);lines.push(`  └ 10 parts: ${fmt(p.prix[10])}`);lines.push(`  └ 20 parts: ${fmt(p.prix[20])}`);lines.push(`  └ 30 parts: ${fmt(p.prix[30])}`);lines.push(’’);});
+lines.push(’*Commandez maintenant ! Chaque gâteau est fait avec amour 💕*’);
+const text=encodeURIComponent(lines.join(’\n’));
+window.open(‘https://wa.me/?text=’+text,’_blank’);
+}
+
+function printCatalog(){
+let html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Catalogue Cake by Zazza</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;padding:20px;max-width:700px;margin:0 auto;}h1{color:#8b3a5a;text-align:center;font-size:26px;}p.sub{text-align:center;color:#aaa;font-size:11px;margin-top:4px;margin-bottom:24px;}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}.card{border:1.5px solid #f9d0df;border-radius:10px;overflow:hidden;}.img{width:100%;height:120px;object-fit:cover;background:#fce8ef;display:flex;align-items:center;justify-content:center;font-size:40px;}.info{padding:10px;}.name{font-size:14px;font-weight:bold;color:#8b3a5a;}.prices{margin-top:6px;font-size:11px;color:#555;}@media print{@page{size:A4;margin:15mm;}}</style></head><body><h1>🎂 CAKE BY ZAZZA</h1><p class="sub">Kipé T2, Conakry · 628 559 844 / 611 000 094</p><div class="grid">`;
+products.forEach(p=>{html+=`<div class="card"><div class="img">${p.photo&&p.photo.startsWith('data:')?`<img src="${p.photo}" style="width:100%;height:100%;object-fit:cover;">`:'🎂'}</div><div class="info"><div class="name">${p.nom}</div><div style="font-size:10px;color:#aaa;">${p.cat}</div><div class="prices">10 parts: ${fmt(p.prix[10])}<br>20 parts: ${fmt(p.prix[20])}<br>30 parts: ${fmt(p.prix[30])}</div></div></div>`;});
+html+=`</div><p style="text-align:center;margin-top:20px;font-size:10px;color:#aaa;font-style:italic;">Chaque gâteau est fait avec amour 💕 — Cake by Zazza © 2026</p></body></html>`;
+const w=window.open(’’,’_blank’);w.document.write(html);w.document.close();w.focus();setTimeout(()=>w.print(),400);
+}
+
+// ═══════════════════════════════════════
+// FINANCES
+// ═══════════════════════════════════════
+function getFFTotal(){
+const ids=[‘ff-loyer’,‘ff-sal’,‘ff-elec’,‘ff-gaz’,‘ff-tel’,‘ff-trans’,‘ff-autres’];
+return ids.reduce((s,id)=>{const v=parseFloat(document.getElementById(id)?.value||0)||0;return s+v;},0);
+}
+
+function loadFF(){
+const ff=S.get(‘ff’,{});
+const ids=[‘loyer’,‘sal’,‘elec’,‘gaz’,‘tel’,‘trans’,‘autres’];
+ids.forEach(k=>{const el=document.getElementById(‘ff-’+k);if(el&&ff[k])el.value=ff[k];});
+updateFFTotal();
+}
+
+function saveFF(){
+const ids=[‘loyer’,‘sal’,‘elec’,‘gaz’,‘tel’,‘trans’,‘autres’];
+const ff={};
+ids.forEach(k=>{ff[k]=parseFloat(document.getElementById(‘ff-’+k)?.value)||0;});
+S.set(‘ff’,ff);
+updateFFTotal();
+}
+
+function updateFFTotal(){
+document.getElementById(‘ff-total’).textContent=fmt(getFFTotal());
+}
+
+function saveAchat(){
+const desc=document.getElementById(‘ach-desc’).value.trim();
+if(!desc){alert(‘Description requise.’);return;}
+const ach={
+id:Date.now(),date:document.getElementById(‘ach-date’).value||nowISO(),
+cat:document.getElementById(‘ach-cat’).value,desc,
+qty:parseFloat(document.getElementById(‘ach-qty’).value)||1,
+cout:parseFloat(document.getElementById(‘ach-cout’).value)||0,
+};
+achats.unshift(ach);S.set(‘achats’,achats);
+document.getElementById(‘ach-desc’).value=’’;document.getElementById(‘ach-qty’).value=’’;document.getElementById(‘ach-cout’).value=’’;
+renderAchats();
+}
+
+function renderAchats(){
+const el=document.getElementById(‘ach-list’);
+if(!el)return;
+const m=curMonth(),y=curYear();
+const list=achats.filter(a=>{const d=new Date(a.date);return d.getMonth()===m&&d.getFullYear()===y;});
+const total=list.reduce((s,a)=>s+a.cout,0);
+if(!list.length){el.innerHTML=’<div class="empty"><div class="ic">🛒</div><h3>Aucun achat ce mois</h3></div>’;return;}
+el.innerHTML=`<div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--rp);border-radius:var(--rads);margin-bottom:10px;"><span style="font-weight:600;color:var(--rt);">Total achats ce mois</span><span style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--rt);">${fmt(total)}</span></div>`+
+list.map(a=>`<div class="li wa">
+<div><h4>${a.desc}</h4><p>${a.cat} · ${fmtDate(a.date)} · qté: ${a.qty}</p></div>
+<div style="text-align:right"><div class="amt" style="font-size:14px;">${fmt(a.cout)}</div>
+<button style="background:none;border:none;color:var(--re);font-size:11px;cursor:pointer;margin-top:3px;" onclick="delAchat(${a.id})">Supprimer</button></div>
+
+  </div>`).join('');
+}
+
+function delAchat(id){achats=achats.filter(a=>a.id!==id);S.set(‘achats’,achats);renderAchats();}
+
+// ═══════════════════════════════════════
+// SCANNER REÇUS (IA)
+// ═══════════════════════════════════════
+async function scanReceipt(e){
+const file=e.target.files[0];if(!file)return;
+document.getElementById(‘rscan-loading’).style.display=‘flex’;
+document.getElementById(‘rscan-result’).style.display=‘none’;
+const reader=new FileReader();
+reader.onload=async(ev)=>{
+const base64=ev.target.result.split(’,’)[1];
+try{
+const res=await fetch(“https://api.anthropic.com/v1/messages”,{
+method:“POST”,headers:{“Content-Type”:“application/json”},
+body:JSON.stringify({model:“claude-sonnet-4-20250514”,max_tokens:800,
+messages:[{role:“user”,content:[
+{type:“image”,source:{type:“base64”,media_type:file.type,data:base64}},
+{type:“text”,text:‘Analyse ce reçu/facture fournisseur. Extrais les données en JSON uniquement sans markdown:\n{“fournisseur”:””,“article”:””,“montant”:0,“date”:“YYYY-MM-DD”,“quantite”:””,“notes”:””,“confiance”:“haute/moyenne/faible”}\nSi info manquante mets “”. Réponds UNIQUEMENT JSON valide.’}
+]}]})
+});
+const data=await res.json();
+const text=data.content?.find(c=>c.type===‘text’)?.text||’{}’;
+try{rscanData=JSON.parse(text);}catch{rscanData={notes:‘Impossible de lire - essayez une photo plus nette.’,confiance:‘faible’};}
+document.getElementById(‘rscan-loading’).style.display=‘none’;
+document.getElementById(‘rscan-result’).style.display=‘block’;
+document.getElementById(‘rscan-img’).src=ev.target.result;
+document.getElementById(‘rscan-img’).style.display=‘block’;
+const fields=[
+[‘🏪 Fournisseur’,rscanData.fournisseur],
+[‘📦 Article’,rscanData.article],
+[‘💰 Montant’,rscanData.montant?fmt(rscanData.montant):’’],
+[‘📅 Date’,rscanData.date],
+[‘📊 Quantité’,rscanData.quantite],
+[‘📝 Notes’,rscanData.notes],
+[‘🔍 Confiance IA’,rscanData.confiance],
+].filter(([,v])=>v&&String(v).trim());
+document.getElementById(‘rscan-fields’).innerHTML=fields.map(([k,v])=>`<div class="sf"><span style="color:#777">${k}</span><span>${v}</span></div>`).join(’’)||’<div style="color:#aaa;font-size:12px;">Aucune donnée extraite. Essayez une photo plus nette.</div>’;
+}catch(err){
+document.getElementById(‘rscan-loading’).style.display=‘none’;
+document.getElementById(‘rscan-result’).style.display=‘block’;
+document.getElementById(‘rscan-img’).style.display=‘none’;
+document.getElementById(‘rscan-fields’).innerHTML=`<div style="color:var(--re);font-size:12px;">Erreur réseau. Vérifiez votre connexion.</div>`;
+}
+};
+reader.readAsDataURL(file);
+}
+
+function importReceiptToAchat(){
+if(!rscanData)return;
+stab(‘fnt’,‘fn-achats’);
+if(rscanData.article)document.getElementById(‘ach-desc’).value=rscanData.article;
+if(rscanData.date)document.getElementById(‘ach-date’).value=rscanData.date;
+if(rscanData.montant&&rscanData.montant>0)document.getElementById(‘ach-cout’).value=rscanData.montant;
+if(rscanData.quantite)document.getElementById(‘ach-qty’).value=rscanData.quantite;
+}
+
+function resetRscan(){
+rscanData=null;
+document.getElementById(‘rscan-result’).style.display=‘none’;
+document.getElementById(‘rscan’).value=’’;
+document.getElementById(‘rscan-img’).style.display=‘none’;
+}
+
+// ═══════════════════════════════════════
+// RAPPORT MENSUEL
+// ═══════════════════════════════════════
+function buildRapportMonths(){
+const sel=document.getElementById(‘rap-month’);
+if(!sel)return;
+const cur=sel.value;
+sel.innerHTML=MONTHS.map((m,i)=>`<option value="${i}" ${i===curMonth()?'selected':''}>${m} ${curYear()}</option>`).join(’’);
+if(cur)sel.value=cur;
+buildReport();
+}
+
+function buildReport(){
+const sel=document.getElementById(‘rap-month’);
+if(!sel)return;
+const mIdx=parseInt(sel.value);
+const y=curYear();
+const mi=invoices.filter(i=>{const d=new Date(i.date);return d.getMonth()===mIdx&&d.getFullYear()===y&&i.statut!==‘ANNULÉ’;});
+const prevIdx=(mIdx-1+12)%12;
+const prevY=mIdx===0?y-1:y;
+const prevMi=invoices.filter(i=>{const d=new Date(i.date);return d.getMonth()===prevIdx&&d.getFullYear()===prevY&&i.statut!==‘ANNULÉ’;});
+
+const ca=mi.reduce((s,i)=>s+i.prix,0);
+const prevCA=prevMi.reduce((s,i)=>s+i.prix,0);
+const couts=mi.reduce((s,i)=>s+(i.cout||0),0);
+const ff=getFFTotal();
+const achatsM=achats.filter(a=>{const d=new Date(a.date);return d.getMonth()===mIdx&&d.getFullYear()===y;}).reduce((s,a)=>s+a.cout,0);
+const ben=ca-couts-ff;
+const marge=ca>0?ben/ca:0;
+const evo=prevCA>0?Math.round((ca-prevCA)/prevCA*100):null;
+
+const counts={};
+mi.forEach(i=>{counts[i.prodNom||i.gateau||’—’]=(counts[i.prodNom||i.gateau||’—’]||0)+1;});
+const best=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+
+// Suggestions
+let sugg=[];
+if(marge<0.2)sugg.push(‘⚠️ Marge < 20% — Augmentez vos prix de 10-15% ou renégociez vos fournisseurs.’);
+if(mi.length<5)sugg.push(‘📦 Peu de commandes — Publiez votre catalogue sur WhatsApp & Instagram.’);
+if(achatsM>ca*0.5)sugg.push(‘🛒 Achats très élevés — Vérifiez vos coûts d'ingrédients et cherchez de meilleures offres.’);
+if(ff>ca*0.3)sugg.push(‘🏠 Charges fixes > 30% du CA — Cherchez à réduire loyer ou optimiser les dépenses fixes.’);
+if(sugg.length===0)sugg.push(‘🏆 Excellente performance ! Pensez à fidéliser vos clients avec des offres de parrainage.’);
+
+document.getElementById(‘rap-content’).innerHTML=` <div class="rstat"> <div class="rst"><div class="v">${fmt(ca)}</div><div class="l">💰 CA</div></div> <div class="rst"><div class="v" style="color:${ben>0?'var(--gn)':'var(--re)'}">${fmt(ben)}</div><div class="l">✅ Bénéfice</div></div> <div class="rst"><div class="v">${Math.round(marge*100)}%</div><div class="l">📊 Marge</div></div> <div class="rst"><div class="v">${mi.length}</div><div class="l">🎂 Cmds</div></div> <div class="rst"><div class="v">${fmt(couts+ff)}</div><div class="l">💸 Charges</div></div> <div class="rst"><div class="v" style="color:${evo!==null?(evo>=0?'var(--gn)':'var(--re)'):'#aaa'}">${evo!==null?(evo>=0?'+':'')+evo+'%':'—'}</div><div class="l">📈 vs mois préc.</div></div> </div> <div class="verdict ${marge>=0.3?'ve':marge>=0.2?'vg':marge>=0.1?'vw':'vd'}"> ${marge>=0.3?'✅ EXCELLENT ! Marge > 30% — Très rentable !':marge>=0.2?'🟡 BON MOIS. Rentable, encore optimisable.':marge>=0.1?'🟠 ATTENTION. Révisez vos prix ou coûts.':'🔴 DANGER ! Pertes ce mois.'} </div> ${best?`<div style="background:var(--gnb);border-radius:var(--rads);padding:10px 12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:12px;font-weight:600;">🏆 Produit le + vendu</span><span style="font-size:13px;font-weight:600;color:var(--gn);">${best[0]} (${best[1]})</span></div>`:''} <div style="font-size:11px;font-weight:600;color:var(--rt);margin-bottom:8px;">💡 SUGGESTIONS D'AMÉLIORATION</div> ${sugg.map(s=>`<div style="padding:8px 12px;background:var(--rp);border-radius:var(--rads);font-size:12px;margin-bottom:7px;border-left:3px solid var(--rt);">${s}</div>`).join('')} <div style="margin-top:14px;display:flex;gap:8px;"> <button class="btn bp bfw" onclick="printReport(${mIdx},${y})">🖨️ Imprimer le rapport</button> </div>`;
+}
+
+function printReport(m,y){
+const el=document.getElementById(‘rap-content’);
+const w=window.open(’’,’_blank’);
+w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Rapport ${MONTHS[m]} ${y}</title><style>body{font-family:Georgia,sans-serif;padding:20px;max-width:600px;margin:0 auto;}h1{color:#8b3a5a;}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0;}.card{border:1px solid #f9d0df;border-radius:8px;padding:10px;text-align:center;}.v{font-size:16px;font-weight:bold;color:#8b3a5a;}.l{font-size:10px;color:#aaa;}@media print{@page{size:A4;margin:15mm;}}</style></head><body><h1>📊 Rapport — ${MONTHS[m]} ${y}</h1><p style="color:#aaa;font-size:11px;">Cake by Zazza · Kipé T2, Conakry</p>${el.innerHTML}</body></html>`);
+w.document.close();w.focus();setTimeout(()=>w.print(),400);
+}
+
+// ═══════════════════════════════════════
+// CONTACTS
+// ═══════════════════════════════════════
+function populateConProdSelect(){
+const sel=document.getElementById(‘cn-prod’);
+if(!sel)return;
+sel.innerHTML=’<option value="">– Choisir –</option>’+products.map(p=>`<option value="${p.id}">${p.nom}</option>`).join(’’);
+}
+
+function saveContact(){
+const prenom=document.getElementById(‘cn-prenom’).value.trim();
+const nom=document.getElementById(‘cn-nom’).value.trim();
+if(!prenom&&!nom){alert(‘Prénom ou nom requis.’);return;}
+const c={
+id:Date.now(),prenom,nom,
+tel:document.getElementById(‘cn-tel’).value,
+email:document.getElementById(‘cn-email’).value,
+type:document.getElementById(‘cn-type’).value,
+date:document.getElementById(‘cn-date’).value,
+prodId:parseInt(document.getElementById(‘cn-prod’).value)||null,
+notes:document.getElementById(‘cn-notes’).value,
+};
+contacts.unshift(c);S.set(‘contacts’,contacts);
+[‘cn-prenom’,‘cn-nom’,‘cn-tel’,‘cn-email’,‘cn-date’,‘cn-notes’].forEach(id=>document.getElementById(id).value=’’);
+const ok=document.getElementById(‘con-ok’);ok.style.display=‘flex’;setTimeout(()=>ok.style.display=‘none’,3000);
+renderContacts();renderAlerts();
+stab(‘contt’,‘con-list’);
+}
+
+function renderContacts(){
+const q=(document.getElementById(‘con-search’)?.value||’’).toLowerCase();
+let list=contacts;
+if(q)list=list.filter(c=>(c.prenom+’ ‘+c.nom+’ ‘+c.tel).toLowerCase().includes(q));
+const el=document.getElementById(‘contacts-list’);
+if(!list.length){el.innerHTML=’<div class="empty"><div class="ic">👥</div><h3>Aucun contact</h3><p>Ajoutez votre premier client</p></div>’;return;}
+el.innerHTML=list.map(c=>{
+const alert=getContactAlert(c);
+return`<div class="li ${alert.urgent?'bd':alert.soon?'wa':''}" onclick="showConDet(${c.id})"> <div><h4>${c.prenom} ${c.nom}</h4><p>${c.type||''} · ${c.tel||''}</p></div> <div style="text-align:right"> ${alert.label?`<div style="font-size:10px;font-weight:600;color:${alert.urgent?'var(--re)':'var(--go)'};">${alert.label}</div>`:''} <div style="font-size:10px;color:#aaa;margin-top:2px;">${c.email||''}</div> </div> </div>`;
+}).join(’’);
+}
+
+function getContactAlert(c){
+if(!c.date)return{};
+const today=new Date();
+const ev=new Date(c.date);
+let next=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());
+if(next<today)next.setFullYear(today.getFullYear()+1);
+const diff=Math.ceil((next-today)/(1000*60*60*24));
+if(diff<=7)return{urgent:true,soon:false,label:’🔴 Dans ’+diff+‘j’};
+if(diff<=30)return{urgent:false,soon:true,label:‘🟡 Dans ‘+diff+‘j’};
+return{urgent:false,soon:false,label:’’};
+}
+
+function showConDet(id){
+const c=contacts.find(x=>x.id===id);if(!c)return;
+const prod=products.find(p=>p.id===c.prodId);
+const alert=getContactAlert(c);
+document.getElementById(‘m-con-title’).textContent=c.prenom+’ ’+c.nom;
+document.getElementById(‘m-con-body’).innerHTML=` <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;"> <div style="width:52px;height:52px;border-radius:50%;background:var(--rpp);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">👤</div> <div><h3 style="font-size:16px;font-weight:600;">${c.prenom} ${c.nom}</h3><p style="font-size:12px;color:#aaa;">${c.type||''}</p></div> </div> ${[['📞',c.tel],['✉️',c.email],['🎉','Événement: '+c.type],['📅','Date: '+(fmtDate(c.date)||'—')],['🎂','Gâteau: '+(prod?prod.nom:'—')],['📝',c.notes]].filter(([,v])=>v&&v.trim()&&v!=='Gâteau: —').map(([ic,v])=>`
+<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--rp);font-size:13px;"><span>${ic}</span><span>${v}</span></div>`).join('')} ${alert.label?`<div style="margin-top:10px;padding:10px;background:${alert.urgent?'var(--reb)':'var(--gb)'};border-radius:var(--rads);font-size:13px;font-weight:600;color:${alert.urgent?'var(--re)':'var(--go)'};">⏰ Rappel événement : ${alert.label}</div>`:''} <div class="bgrp" style="margin-top:14px;"> ${c.tel?`<a href="tel:${c.tel}" class="btn bg bsm">📞 Appeler</a>`:''} ${c.tel?`<a href="https://wa.me/${c.tel.replace(/\s/g,'')}" target="_blank" class="btn bp bsm">💬 WhatsApp</a>`:''} <button class="btn bd2 bsm" onclick="delContact(${id})">🗑️ Supprimer</button> </div>`;
+document.getElementById(‘m-con’).classList.add(‘on’);
+}
+
+function delContact(id){
+if(!confirm(‘Supprimer ce contact ?’))return;
+contacts=contacts.filter(c=>c.id!==id);S.set(‘contacts’,contacts);cm(‘m-con’);renderContacts();renderAlerts();
+}
+
+function renderAlerts(){
+const today=new Date();
+const upcoming=contacts.filter(c=>{
+if(!c.date)return false;
+const ev=new Date(c.date);
+let next=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());
+if(next<today)next.setFullYear(today.getFullYear()+1);
+return Math.ceil((next-today)/(1000*60*60*24))<=30;
+}).sort((a,b)=>{
+const getD=c=>{const ev=new Date(c.date);let n=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());if(n<today)n.setFullYear(today.getFullYear()+1);return n;};
+return getD(a)-getD(b);
+});
+const el=document.getElementById(‘alerts-list’);
+if(!el)return;
+if(!upcoming.length){el.innerHTML=’<div class="empty"><div class="ic">🔔</div><h3>Aucun rappel dans les 30 prochains jours</h3></div>’;return;}
+el.innerHTML=’<div style="font-size:11px;font-weight:600;color:var(--rt);margin-bottom:10px;">🔔 ÉVÉNEMENTS À VENIR — 30 PROCHAINS JOURS</div>’+
+upcoming.map(c=>{
+const ev=new Date(c.date);
+let next=new Date(today.getFullYear(),ev.getMonth(),ev.getDate());
+if(next<today)next.setFullYear(today.getFullYear()+1);
+const diff=Math.ceil((next-today)/(1000*60*60*24));
+const prod=products.find(p=>p.id===c.prodId);
+const urgent=diff<=7;
+return`<div class="li ${urgent?'bd':'wa'}" onclick="showConDet(${c.id})"> <div> <h4>${c.prenom} ${c.nom}</h4> <p>${c.type} · ${fmtDate(c.date.replace(/\d{4}/,new Date().getFullYear()))}</p> ${prod?`<p style="color:var(--gn);font-size:10px;margin-top:2px;">🎂 ${prod.nom}</p>`:''} </div> <div style="text-align:right"> <div style="font-size:18px;font-weight:700;font-family:'Cormorant Garamond',serif;color:${urgent?'var(--re)':'var(--go)'};">${diff}j</div> <div style="font-size:10px;color:#aaa;">${c.tel?`<a href="tel:${c.tel}" style="color:var(--gn);text-decoration:none;">📞 Appeler</a>`:''}</div> </div> </div>`;
+}).join(’’);
+}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+
+// ═══════════════════════════════════════
+// LIGHT PALACE
+// ═══════════════════════════════════════
+let lpReservations = S.get(‘lpRes’,[]);
+let lpCustomCharges = [];
+let lpCalMonth = new Date().getMonth();
+let lpCalYear  = new Date().getFullYear();
+
+function getLPDefaultTarif(){return parseInt(S.get(‘lpDefaultTarif’,12000000))||12000000;}
+function saveLPDefaultTarif(){const v=parseInt(document.getElementById(‘lp-default-tarif’).value)||12000000;S.set(‘lpDefaultTarif’,v);document.getElementById(‘lp-tarif-display’).textContent=fmt(v);}
+
+function calcLPSolde(){
+const prix=parseFloat(document.getElementById(‘lp-prix’).value)||0;
+const acompte=parseFloat(document.getElementById(‘lp-acompte’).value)||0;
+const charges=[‘nettoyage’,‘parking’,‘secu’,‘elec’,‘deco’,‘sono’].reduce((s,k)=>{
+return s+(parseFloat(document.getElementById(‘lp-c-’+k)?.value)||0);
+},0);
+const customC=lpCustomCharges.reduce((s,c)=>{
+return s+(parseFloat(document.getElementById(‘lpc_’+c.id)?.value)||0);
+},0);
+const totalC=charges+customC;
+const solde=Math.max(0,prix-acompte);
+const ben=prix-totalC;
+document.getElementById(‘lp-solde’).value=fmt(solde);
+document.getElementById(‘lp-total-charges’).value=fmt(totalC);
+document.getElementById(‘lp-benefice’).value=fmt(ben);
+document.getElementById(‘lp-benefice’).style.color=ben>0?‘var(–gn)’:‘var(–re)’;
+}
+
+function addLPCharge(){
+const id=Date.now();
+lpCustomCharges.push({id});
+const div=document.createElement(‘div’);
+div.id=‘lpcdiv_’+id;
+div.className=‘fgrid’;div.style.marginBottom=‘8px’;
+div.innerHTML=` <div class="fr" style="margin:0"><label style="font-size:10px;">Libellé charge</label> <input id="lpcl_${id}" placeholder="Ex: Traiteur" style="width:100%;padding:9px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;"></div> <div class="fr" style="margin:0;display:flex;gap:4px;align-items:flex-end;"> <div style="flex:1"><label style="font-size:10px;">Montant (GNF)</label> <input id="lpc_${id}" type="number" placeholder="0" style="width:100%;padding:9px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;" oninput="calcLPSolde()"></div> <button onclick="removeLPCharge(${id})" style="background:none;border:none;color:var(--re);font-size:20px;cursor:pointer;padding:8px 4px;">×</button> </div>`;
+document.getElementById(‘lp-custom-charges’).appendChild(div);
+}
+
+function removeLPCharge(id){
+lpCustomCharges=lpCustomCharges.filter(c=>c.id!==id);
+const el=document.getElementById(‘lpcdiv_’+id);if(el)el.remove();calcLPSolde();
+}
+
+function checkLPConflict(){
+const date=document.getElementById(‘lp-date’).value;
+if(!date)return;
+const conflict=lpReservations.find(r=>r.date===date&&r.statut!==‘ANNULÉ’);
+const alertEl=document.getElementById(‘lp-conflict-alert’);
+if(conflict){
+alertEl.style.display=‘block’;
+alertEl.textContent=`🚨 ALERTE DOUBLE RÉSERVATION ! Le ${fmtDate(date)} est déjà réservé pour "${conflict.client}" (${conflict.eventType}). Choisissez une autre date.`;
+} else {
+alertEl.style.display=‘none’;
+}
+}
+
+function saveLPReservation(){
+const client=document.getElementById(‘lp-client’).value.trim();
+const date=document.getElementById(‘lp-date’).value;
+if(!client){alert(‘Nom du client requis.’);return;}
+if(!date){alert(‘Date requise.’);return;}
+const conflict=lpReservations.find(r=>r.date===date&&r.statut!==‘ANNULÉ’);
+if(conflict&&!confirm(`⚠️ Cette date est déjà réservée pour "${conflict.client}". Confirmer quand même ?`))return;
+const charges=[‘nettoyage’,‘parking’,‘secu’,‘elec’,‘deco’,‘sono’].reduce((s,k)=>{
+return s+(parseFloat(document.getElementById(‘lp-c-’+k)?.value)||0);
+},0);
+const customChargesData=lpCustomCharges.map(c=>({
+label:document.getElementById(‘lpcl_’+c.id)?.value||’’,
+montant:parseFloat(document.getElementById(‘lpc_’+c.id)?.value)||0,
+}));
+const prix=parseFloat(document.getElementById(‘lp-prix’).value)||0;
+const acompte=parseFloat(document.getElementById(‘lp-acompte’).value)||0;
+const res={
+id:Date.now(),
+num:‘LP-’+new Date().getFullYear()+’-’+String(lpReservations.length+1).padStart(3,‘0’),
+client, tel:document.getElementById(‘lp-tel’).value,
+email:document.getElementById(‘lp-email’).value,
+eventType:document.getElementById(‘lp-event-type’).value,
+date, duree:document.getElementById(‘lp-duree’).value,
+hstart:document.getElementById(‘lp-hstart’).value,
+hend:document.getElementById(‘lp-hend’).value,
+guests:document.getElementById(‘lp-guests’).value,
+prix, acompte,
+solde:Math.max(0,prix-acompte),
+chargesStd:{
+nettoyage:parseFloat(document.getElementById(‘lp-c-nettoyage’).value)||0,
+parking:parseFloat(document.getElementById(‘lp-c-parking’).value)||0,
+secu:parseFloat(document.getElementById(‘lp-c-secu’).value)||0,
+elec:parseFloat(document.getElementById(‘lp-c-elec’).value)||0,
+deco:parseFloat(document.getElementById(‘lp-c-deco’).value)||0,
+sono:parseFloat(document.getElementById(‘lp-c-sono’).value)||0,
+},
+customCharges:customChargesData,
+totalCharges:charges+customChargesData.reduce((s,c)=>s+c.montant,0),
+statut:document.getElementById(‘lp-statut’).value,
+notes:document.getElementById(‘lp-notes’).value,
+month:MONTHS[new Date(date).getMonth()],
+hasContract: document.getElementById(‘lp-contract-status’).style.display!==‘none’,
+};
+lpReservations.unshift(res);
+S.set(‘lpRes’,lpReservations);
+const ok=document.getElementById(‘lp-ok’);ok.style.display=‘flex’;setTimeout(()=>ok.style.display=‘none’,3000);
+renderLPCalendar();renderLPUpcoming();
+}
+
+function newLPReservation(){
+[‘lp-client’,‘lp-tel’,‘lp-email’,‘lp-guests’,‘lp-notes’].forEach(id=>document.getElementById(id).value=’’);
+document.getElementById(‘lp-date’).value=’’;
+document.getElementById(‘lp-prix’).value=getLPDefaultTarif();
+document.getElementById(‘lp-acompte’).value=0;
+document.getElementById(‘lp-statut’).value=‘CONFIRMÉ’;
+[‘nettoyage’,‘parking’,‘secu’,‘elec’,‘deco’,‘sono’].forEach(k=>document.getElementById(‘lp-c-’+k).value=0);
+lpCustomCharges=[];document.getElementById(‘lp-custom-charges’).innerHTML=’’;
+document.getElementById(‘lp-conflict-alert’).style.display=‘none’;
+document.getElementById(‘lp-contract-status’).style.display=‘none’;
+calcLPSolde();
+}
+
+function uploadLPContract(e){
+document.getElementById(‘lp-contract-status’).style.display=‘block’;
+document.getElementById(‘lp-contract-status’).textContent=’✅ Contrat uploadé : ’+e.target.files[0]?.name;
+}
+
+// ── CALENDRIER LP ──
+function lpPrevMonth(){if(lpCalMonth===0){lpCalMonth=11;lpCalYear–;}else lpCalMonth–;renderLPCalendar();}
+function lpNextMonth(){if(lpCalMonth===11){lpCalMonth=0;lpCalYear++;}else lpCalMonth++;renderLPCalendar();}
+
+function renderLPCalendar(){
+document.getElementById(‘lp-month-title’).textContent=MONTHS[lpCalMonth]+’ ‘+lpCalYear;
+const grid=document.getElementById(‘lp-cal-grid’);
+const days=[‘Lun’,‘Mar’,‘Mer’,‘Jeu’,‘Ven’,‘Sam’,‘Dim’];
+let html=days.map(d=>`<div style="text-align:center;font-size:9px;font-weight:600;color:#aaa;padding:4px 0;">${d}</div>`).join(’’);
+const first=new Date(lpCalYear,lpCalMonth,1);
+const lastDay=new Date(lpCalYear,lpCalMonth+1,0).getDate();
+let startDow=(first.getDay()+6)%7; // Mon=0
+for(let i=0;i<startDow;i++)html+=`<div></div>`;
+const today=new Date();
+for(let d=1;d<=lastDay;d++){
+const dateStr=`${lpCalYear}-${String(lpCalMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+const res=lpReservations.filter(r=>r.date===dateStr&&r.statut!==‘ANNULÉ’);
+const isToday=d===today.getDate()&&lpCalMonth===today.getMonth()&&lpCalYear===today.getFullYear();
+let bg=‘var(–wh)’;let color=‘var(–dk)’;let border=‘1px solid var(–rpp)’;
+if(isToday){bg=‘var(–rp)’;border=‘2px solid var(–rt)’;}
+if(res.length>0){
+if(res[0].statut===‘PAYÉ INTÉGRALEMENT’)bg=‘var(–gnb)’;
+else if(res[0].statut===‘ACOMPTE REÇU’)bg=‘var(–gb)’;
+else bg=’#ffe0e0’;
+border=‘2px solid var(–rt)’;
+}
+const onclick=res.length>0?`showLPDet(${res[0].id})`:``;
+html+=`<div onclick="${onclick}" style="text-align:center;padding:6px 2px;border-radius:6px;font-size:12px;font-weight:${res.length>0?'700':'400'};background:${bg};border:${border};color:${color};cursor:${res.length>0?'pointer':'default'};min-height:32px;"> ${d}${res.length>0?`<div style="font-size:8px;color:var(--rt);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${res[0].client.split(’ ‘)[0]}</div>`:’’}
+</div>`;
+}
+grid.innerHTML=html;
+}
+
+function renderLPUpcoming(){
+const today=new Date();today.setHours(0,0,0,0);
+const upcoming=lpReservations
+.filter(r=>new Date(r.date)>=today&&r.statut!==‘ANNULÉ’)
+.sort((a,b)=>new Date(a.date)-new Date(b.date))
+.slice(0,5);
+const el=document.getElementById(‘lp-upcoming-list’);
+if(!upcoming.length){el.innerHTML=’<div class="empty"><div class="ic">🗓️</div><h3>Aucune réservation à venir</h3></div>’;return;}
+el.innerHTML=upcoming.map(r=>{
+const d=new Date(r.date);const diff=Math.ceil((d-today)/(1000*60*60*24));
+const sc=r.statut===‘PAYÉ INTÉGRALEMENT’?‘gd’:r.statut===‘ANNULÉ’?‘bd’:‘wa’;
+return`<div class="li ${sc}" onclick="showLPDet(${r.id})"> <div><h4>${r.client}</h4><p>${r.eventType} · ${fmtDate(r.date)} · ${r.hstart||''}-${r.hend||''}</p> <span class="badge ${r.statut==='PAYÉ INTÉGRALEMENT'?'bgn':r.statut==='ANNULÉ'?'bre':'bgo2'}">${r.statut}</span></div> <div style="text-align:right"> <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div> <div style="font-size:11px;color:${diff<=7?'var(--re)':'var(--go)'};">Dans ${diff}j</div> </div> </div>`;
+}).join(’’);
+}
+
+function showLPDet(id){
+const r=lpReservations.find(x=>x.id===id);if(!r)return;
+document.getElementById(‘m-lp-det-title’).textContent=r.client+’ · ’+fmtDate(r.date);
+document.getElementById(‘m-lp-det-body’).innerHTML=` <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;"> <div><div style="font-size:10px;color:#aaa;">N° Réservation</div><div style="font-weight:600;color:#2c3e6b;">${r.num}</div></div> <div><div style="font-size:10px;color:#aaa;">Statut</div><span class="badge bro">${r.statut}</span></div> <div><div style="font-size:10px;color:#aaa;">Date</div><div style="font-weight:600;">${fmtDate(r.date)}</div></div> <div><div style="font-size:10px;color:#aaa;">Horaires</div><div>${r.hstart||'—'} → ${r.hend||'—'}</div></div> <div><div style="font-size:10px;color:#aaa;">Type</div><div>${r.eventType}</div></div> <div><div style="font-size:10px;color:#aaa;">Invités</div><div>${r.guests||'—'}</div></div> </div> <div style="background:#e8eef8;border-radius:var(--rads);padding:10px;margin-bottom:10px;"> <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;">Location</span><strong>${fmt(r.prix)}</strong></div> <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;">Acompte</span><span style="color:var(--gn);">${fmt(r.acompte)}</span></div> <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;">Solde restant</span><span style="color:var(--re);font-weight:600;">${fmt(r.solde)}</span></div> <div style="display:flex;justify-content:space-between;"><span style="font-size:12px;">Total charges</span><span>${fmt(r.totalCharges)}</span></div> </div> ${r.notes?`<div style="font-size:12px;color:#777;padding:8px;background:var(--nu);border-radius:var(--rads);margin-bottom:10px;">📝 ${r.notes}</div>`:''} <div class="bgrp"> <button class="btn bsm" style="background:#2c3e6b;color:#fff;" onclick="showLPReceiptModalById(${r.id})">🧾 Reçu</button> <button class="btn bsm" style="background:#1a4a7a;color:#fff;" onclick="generateLPContractById(${r.id})">📄 Contrat</button> <button class="btn bs bsm" onclick="changeLPStatus(${r.id})">✏️ Statut</button> <button class="btn bd2 bsm" onclick="deleteLPRes(${r.id})">🗑️</button> </div>`;
+document.getElementById(‘m-lp-det’).classList.add(‘on’);
+}
+
+function changeLPStatus(id){
+const r=lpReservations.find(x=>x.id===id);if(!r)return;
+const opts=[‘CONFIRMÉ’,‘EN ATTENTE’,‘ACOMPTE REÇU’,‘PAYÉ INTÉGRALEMENT’,‘ANNULÉ’];
+const s=prompt(‘Statut:\n’+opts.map((o,i)=>`${i+1}. ${o}`).join(’\n’)+’\n\nEntrez le numéro:’);
+const n=parseInt(s)-1;
+if(n>=0&&n<opts.length){r.statut=opts[n];S.set(‘lpRes’,lpReservations);cm(‘m-lp-det’);renderLPCalendar();renderLPUpcoming();}
+}
+
+function deleteLPRes(id){
+if(!confirm(‘Supprimer cette réservation ?’))return;
+lpReservations=lpReservations.filter(r=>r.id!==id);S.set(‘lpRes’,lpReservations);cm(‘m-lp-det’);renderLPCalendar();renderLPUpcoming();
+}
+
+// ── REÇU LP ──
+function getCurrentLPData(){
+return{
+num:‘LP-’+new Date().getFullYear()+’-’+String(lpReservations.length+1).padStart(3,‘0’),
+client:document.getElementById(‘lp-client’).value||‘Client’,
+tel:document.getElementById(‘lp-tel’).value,
+eventType:document.getElementById(‘lp-event-type’).value,
+date:document.getElementById(‘lp-date’).value,
+hstart:document.getElementById(‘lp-hstart’).value,
+hend:document.getElementById(‘lp-hend’).value,
+prix:parseFloat(document.getElementById(‘lp-prix’).value)||0,
+acompte:parseFloat(document.getElementById(‘lp-acompte’).value)||0,
+solde:Math.max(0,(parseFloat(document.getElementById(‘lp-prix’).value)||0)-(parseFloat(document.getElementById(‘lp-acompte’).value)||0)),
+statut:document.getElementById(‘lp-statut’).value,
+notes:document.getElementById(‘lp-notes’).value,
+};
+}
+
+function buildLPReceiptHTML(r){
+const settings=S.get(‘settings’,{});
+return`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;"> <div style="text-align:center;border-bottom:2px solid #2c3e6b;padding-bottom:14px;margin-bottom:14px;"> <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:10px;color:#aaa;margin-top:3px;">${settings.adresse||'Conakry, Guinée'} · ${settings.tel1||''}</div> <div style="font-size:18px;font-weight:700;color:#1a2540;letter-spacing:2px;margin-top:8px;text-transform:uppercase;">REÇU DE RÉSERVATION</div> <div style="font-size:11px;color:#aaa;margin-top:4px;">N° ${r.num} — ${new Date().toLocaleDateString('fr-FR')}</div> </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;"> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Client</div><div style="font-weight:600;">${r.client}</div><div style="font-size:11px;color:#aaa;">${r.tel||''}</div></div> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Événement</div><div style="font-weight:600;">${r.eventType}</div><div style="font-size:11px;color:#aaa;">${fmtDate(r.date)}</div></div> </div> <table style="width:100%;border-collapse:collapse;margin-bottom:12px;"> <thead><tr style="background:#e8eef8;"><th style="padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Description</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Montant</th></tr></thead> <tbody> <tr><td style="padding:7px 10px;font-size:13px;border-bottom:1px solid #e8eef8;">Location salle — ${r.duree||'Journée'}<br><span style="font-size:10px;color:#aaa;">${r.hstart||''} → ${r.hend||''}</span></td><td style="padding:7px 10px;text-align:right;font-weight:600;">${fmt(r.prix)}</td></tr> </tbody> </table> <div style="display:flex;justify-content:space-between;padding:8px 10px;background:#f0f4ff;border-radius:8px;font-size:12px;margin-bottom:8px;"><span>Acompte reçu</span><span style="font-weight:600;color:var(--gn)">${fmt(r.acompte||0)}</span></div> <div style="background:#2c3e6b;color:#fff;border-radius:var(--rads);padding:13px;display:flex;justify-content:space-between;align-items:center;"> <div><div style="font-size:11px;opacity:.8;">Solde restant à régler</div></div> <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;">${fmt(r.solde||Math.max(0,r.prix-(r.acompte||0)))}</div> </div> ${r.notes?`<div style="margin-top:10px;font-size:11px;color:#aaa;padding:8px;background:#f5f5f5;border-radius:8px;">📝 ${r.notes}</div>`:’’}
+<div style="margin-top:12px;background:#e8eef8;border-radius:8px;padding:10px;font-size:10px;">
+<strong>⚠️ Conditions :</strong> Le solde doit être réglé avant le début de l’événement. Toute annulation moins de 7 jours avant la date entraîne la perte de l’acompte.
+</div>
+<div style="text-align:center;font-size:9px;color:#aaa;margin-top:12px;font-style:italic;">Light Palace · Merci de votre confiance 🏛️</div>
+
+  </div>`;
+}
+
+function showLPReceiptModal(){
+const r=getCurrentLPData();
+document.getElementById(‘lp-receipt-content’).innerHTML=buildLPReceiptHTML(r);
+document.getElementById(‘m-lp-receipt’).classList.add(‘on’);
+}
+
+function showLPReceiptModalById(id){
+const r=lpReservations.find(x=>x.id===id);if(!r)return;
+document.getElementById(‘lp-receipt-content’).innerHTML=buildLPReceiptHTML(r);
+document.getElementById(‘m-lp-receipt’).classList.add(‘on’);
+}
+
+function printLPReceipt(){
+const c=document.getElementById(‘lp-receipt-content’).innerHTML;
+const w=window.open(’’,’_blank’);
+w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Reçu Light Palace</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;padding:15px;max-width:580px;margin:0 auto;}@media print{@page{size:A4;margin:12mm;}}</style></head><body>${c}</body></html>`);
+w.document.close();w.focus();setTimeout(()=>w.print(),400);
+}
+
+// ── CONTRAT LP ──
+function generateLPContract(){
+const r=getCurrentLPData();
+showLPContractHTML(r);
+}
+
+function generateLPContractById(id){
+const r=lpReservations.find(x=>x.id===id);if(!r)return;
+showLPContractHTML(r);cm(‘m-lp-det’);
+}
+
+function showLPContractHTML(r){
+const settings=S.get(‘settings’,{});
+const today=new Date().toLocaleDateString(‘fr-FR’);
+const html=`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;font-size:12px;line-height:1.7;"> <div style="text-align:center;margin-bottom:18px;"> <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:18px;font-weight:700;color:#1a2540;margin-top:6px;text-transform:uppercase;letter-spacing:1px;">CONTRAT DE LOCATION DE SALLE</div> <div style="font-size:10px;color:#aaa;margin-top:4px;">Réf : ${r.num||'LP-2026-XXX'} — Établi le ${today}</div> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;background:#f5f8ff;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">PARTIES AU CONTRAT</div> <p><strong>Le Prestataire :</strong> Light Palace — ${settings.adresse||'Conakry, Guinée'} — Tél : ${settings.tel1||''}</p> <p style="margin-top:6px;"><strong>Le Client :</strong> ${r.client||'_______________'} — Tél : ${r.tel||'_______________'}</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 1 — OBJET DU CONTRAT</div> <p>Le Prestataire met à disposition du Client la salle Light Palace pour l'organisation de l'événement suivant :</p> <p style="margin-top:6px;">• <strong>Type d'événement :</strong> ${r.eventType||'_______________'}</p> <p>• <strong>Date :</strong> ${fmtDate(r.date)||'_______________'}</p> <p>• <strong>Horaires :</strong> ${r.hstart||'__:__'} à ${r.hend||'__:__'} (${r.duree||'Journée complète'})</p> <p>• <strong>Nombre d'invités estimé :</strong> ${r.guests||'___'} personnes</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 2 — CONDITIONS FINANCIÈRES</div> <p>• <strong>Tarif location :</strong> ${fmt(r.prix)}</p> <p>• <strong>Acompte à verser à la signature :</strong> ${fmt(r.acompte||Math.round(r.prix*0.5))} (50%)</p> <p>• <strong>Solde restant :</strong> ${fmt(r.solde)} — à régler au plus tard la veille de l'événement</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 3 — CONDITIONS GÉNÉRALES</div> <p>• L'acompte versé n'est pas remboursable en cas d'annulation moins de 7 jours avant l'événement.</p> <p>• Le Client est responsable des dégradations causées par ses invités.</p> <p>• La salle doit être libérée à l'heure convenue. Tout dépassement sera facturé.</p> <p>• Le Client s'engage à respecter le règlement intérieur de Light Palace.</p> <p>• La capacité maximale de la salle doit être respectée.</p> </div> ${r.notes?`<div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"><div style="font-weight:700;color:#2c3e6b;margin-bottom:6px;">CLAUSES PARTICULIÈRES</div><p>${r.notes}</p></div>`:’’}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+<div style="border-top:2px solid #2c3e6b;padding-top:8px;text-align:center;">
+<p style="font-size:10px;color:#aaa;">Pour Light Palace</p>
+<p style="font-size:11px;margin-top:4px;">Nom : *******************</p>
+<p style="font-size:11px;margin-top:4px;">Date : ${today}</p>
+<p style="font-size:11px;margin-top:20px;">Signature :</p>
+<div style="height:40px;border-bottom:1px solid #ccc;margin-top:4px;"></div>
+</div>
+<div style="border-top:2px solid #2c3e6b;padding-top:8px;text-align:center;">
+<p style="font-size:10px;color:#aaa;">Le Client</p>
+<p style="font-size:11px;margin-top:4px;">Nom : ${r.client||’*******************’}</p>
+<p style="font-size:11px;margin-top:4px;">Date : ___________________</p>
+<p style="font-size:11px;margin-top:20px;">Signature :</p>
+<div style="height:40px;border-bottom:1px solid #ccc;margin-top:4px;"></div>
+</div>
+</div>
+
+  </div>`;
+  document.getElementById('lp-contract-content').innerHTML=html;
+  document.getElementById('m-lp-contract').classList.add('on');
+}
+
+function printLPContract(){
+const c=document.getElementById(‘lp-contract-content’).innerHTML;
+const w=window.open(’’,’_blank’);
+w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Contrat Light Palace</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;padding:15px;max-width:620px;margin:0 auto;font-size:12px;line-height:1.6;}@media print{@page{size:A4;margin:15mm;}}</style></head><body>${c}</body></html>`);
+w.document.close();w.focus();setTimeout(()=>w.print(),400);
+}
+
+// ── CHARGES FIXES LP ──
+function loadLPFF(){
+const ff=S.get(‘lpff’,{});
+[‘entretien’,‘garde’,‘elec’,‘eau’,‘internet’,‘assurance’].forEach(k=>{
+const el=document.getElementById(‘lpff-’+k);if(el&&ff[k])el.value=ff[k];
+});
+const tarif=getLPDefaultTarif();
+const el=document.getElementById(‘lp-default-tarif’);if(el)el.value=tarif;
+const td=document.getElementById(‘lp-tarif-display’);if(td)td.textContent=fmt(tarif);
+updateLPFFTotal();
+// Init new reservation tarif
+const lpp=document.getElementById(‘lp-prix’);if(lpp&&!lpp.value)lpp.value=tarif;
+}
+
+function saveLPFF(){
+const ff={};
+[‘entretien’,‘garde’,‘elec’,‘eau’,‘internet’,‘assurance’].forEach(k=>{
+ff[k]=parseFloat(document.getElementById(‘lpff-’+k)?.value)||0;
+});
+S.set(‘lpff’,ff);updateLPFFTotal();
+}
+
+function updateLPFFTotal(){
+const ff=S.get(‘lpff’,{});
+const total=Object.values(ff).reduce((s,v)=>s+(v||0),0);
+const el=document.getElementById(‘lpff-total’);if(el)el.textContent=fmt(total);
+}
+
+function addLPFFCharge(){
+const id=Date.now();
+const div=document.createElement(‘div’);div.className=‘fgrid’;div.style.marginBottom=‘8px’;div.id=‘lpffc_’+id;
+div.innerHTML=` <div class="fr" style="margin:0"><label style="font-size:10px;">Charge</label> <input placeholder="Ex: Taxe municipale" style="width:100%;padding:9px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;"></div> <div class="fr" style="margin:0;display:flex;gap:4px;align-items:flex-end;"> <div style="flex:1"><label style="font-size:10px;">Montant (GNF/mois)</label> <input type="number" placeholder="0" style="width:100%;padding:9px 10px;border:1.5px solid var(--rpp);border-radius:var(--rads);font-size:13px;" oninput="saveLPFF()"></div> <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background:none;border:none;color:var(--re);font-size:20px;cursor:pointer;padding:8px 4px;">×</button> </div>`;
+document.getElementById(‘lpff-custom’).appendChild(div);
+}
+
+// ── BILAN LP ──
+function buildLPReportMonths(){
+const sel=document.getElementById(‘lp-rap-month’);if(!sel)return;
+sel.innerHTML=MONTHS.map((m,i)=>`<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${m} ${new Date().getFullYear()}</option>`).join(’’);
+buildLPReport();
+}
+
+function buildLPReport(){
+const sel=document.getElementById(‘lp-rap-month’);if(!sel)return;
+const mIdx=parseInt(sel.value);const y=new Date().getFullYear();
+const mRes=lpReservations.filter(r=>{const d=new Date(r.date);return d.getMonth()===mIdx&&d.getFullYear()===y&&r.statut!==‘ANNULÉ’;});
+const ca=mRes.reduce((s,r)=>s+r.prix,0);
+const charges=mRes.reduce((s,r)=>s+r.totalCharges,0);
+const ff=Object.values(S.get(‘lpff’,{})).reduce((s,v)=>s+(v||0),0);
+const ben=ca-charges-ff;
+document.getElementById(‘lp-rap-content’).innerHTML=` <div class="rstat" style="margin-top:12px;"> <div class="rst"><div class="v" style="color:#2c3e6b;">${mRes.length}</div><div class="l">🏛️ Événements</div></div> <div class="rst"><div class="v" style="color:#2c3e6b;">${fmt(ca)}</div><div class="l">💰 CA location</div></div> <div class="rst"><div class="v" style="color:${ben>0?'var(--gn)':'var(--re)'};">${fmt(ben)}</div><div class="l">✅ Bénéfice</div></div> </div> ${mRes.length?mRes.map(r=>`
+<div class="li ${r.statut==='PAYÉ INTÉGRALEMENT'?'gd':'wa'}" onclick="showLPDet(${r.id})">
+<div><h4>${r.client}</h4><p>${r.eventType} · ${fmtDate(r.date)}</p></div>
+<div style="text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div><div style="font-size:10px;color:var(--re);">Solde: ${fmt(r.solde)}</div></div>
+</div>`).join(''):'<div class="empty"><div class="ic">🏛️</div><h3>Aucune réservation ce mois</h3></div>'}`;
+}
+
+// ════════════════════════════════════════
+// SAUVEGARDE & RESTAURATION
+// ════════════════════════════════════════
+function updateBackupStats(){
+const nbInv=invoices.length;
+const nbCon=contacts.length;
+const nbProd=products.length;
+const nbLP=lpReservations.length;
+const el=document.getElementById(‘backup-stats’);
+if(el)el.textContent=`${nbInv} commandes · ${nbProd} produits · ${nbCon} contacts · ${nbLP} réservations LP`;
+}
+
+function exportBackup(){
+const data={
+version:‘1.0’,date:new Date().toISOString(),
+invoices,products,contacts,achats,lpReservations,
+ff:S.get(‘ff’,{}),lpff:S.get(‘lpff’,{}),
+settings:S.get(‘settings’,{}),
+lpDefaultTarif:getLPDefaultTarif(),
+};
+const blob=new Blob([JSON.stringify(data,null,2)],{type:‘application/json’});
+const a=document.createElement(‘a’);
+a.href=URL.createObjectURL(blob);
+a.download=`CakeByZazza_Backup_${new Date().toISOString().split('T')[0]}.json`;
+a.click();
+}
+
+function exportCSV2(){
+if(!invoices.length){alert(‘Aucune commande à exporter.’);return;}
+const headers=[‘N°’,‘Type’,‘Client’,‘Téléphone’,‘Date’,‘Produit’,‘Taille’,‘Prix’,‘Acompte’,‘Solde’,‘Statut’];
+const rows=invoices.map(i=>[i.num,i.docType,i.client,i.tel||’’,i.date,i.prodNom||i.gateau,i.taille||’’,i.prix,i.acompte||0,Math.max(0,i.prix-(i.acompte||0)),i.statut]);
+const csv=[headers,…rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(’,’)).join(’\n’);
+const blob=new Blob([’\uFEFF’+csv],{type:‘text/csv;charset=utf-8’});
+const a=document.createElement(‘a’);a.href=URL.createObjectURL(blob);
+a.download=`CakeByZazza_Commandes_${new Date().toISOString().split('T')[0]}.csv`;
+a.click();
+}
+
+function importBackup(e){
+const file=e.target.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=ev=>{
+try{
+const data=JSON.parse(ev.target.result);
+if(!data.version){throw new Error(‘Format invalide’);}
+if(!confirm(`Restaurer la sauvegarde du ${new Date(data.date).toLocaleDateString('fr-FR')} ?\n${data.invoices?.length||0} commandes · ${data.contacts?.length||0} contacts · ${data.products?.length||0} produits · ${data.lpReservations?.length||0} réservations LP\n\n⚠️ Cela remplacera toutes vos données actuelles.`))return;
+if(data.invoices){invoices=data.invoices;S.set(‘invoices’,invoices);}
+if(data.products){products=data.products;S.set(‘products’,products);}
+if(data.contacts){contacts=data.contacts;S.set(‘contacts’,contacts);}
+if(data.achats){achats=data.achats;S.set(‘achats’,achats);}
+if(data.lpReservations){lpReservations=data.lpReservations;S.set(‘lpRes’,lpReservations);}
+if(data.ff)S.set(‘ff’,data.ff);
+if(data.lpff)S.set(‘lpff’,data.lpff);
+if(data.settings)S.set(‘settings’,data.settings);
+if(data.lpDefaultTarif)S.set(‘lpDefaultTarif’,data.lpDefaultTarif);
+const st=document.getElementById(‘restore-status’);
+st.style.display=‘flex’;st.textContent=‘✅ Restauration réussie ! Toutes vos données sont récupérées.’;
+updateBackupStats();updateDash();
+}catch(err){
+alert(‘Fichier invalide. Vérifiez que c'est bien une sauvegarde Cake by Zazza.’);
+}
+};
+reader.readAsText(file);
+}
+
+function clearAllData(){
+if(!confirm(‘⚠️ ATTENTION ! Toutes vos données seront effacées définitivement.\n\nSauvegardez d'abord avec le bouton “Sauvegarder tout”.\n\nConfirmer la suppression ?’))return;
+if(!confirm(‘Dernière confirmation : effacer TOUTES les données ?’))return;
+[‘invoices’,‘products’,‘contacts’,‘achats’,‘lpRes’,‘ff’,‘lpff’,‘settings’,‘lpDefaultTarif’].forEach(k=>localStorage.removeItem(‘cbz_’+k));
+invoices=[];products=[];contacts=[];achats=[];lpReservations=[];
+initDefaults();
+alert(‘✅ Données effacées. L'appli redémarre…’);
+location.reload();
+}
+
+// ════════════════════════════════════════
+// PARAMÈTRES BOUTIQUE
+// ════════════════════════════════════════
+function loadSettings(){
+const s=S.get(‘settings’,{});
+if(s.nom)document.getElementById(‘s-nom’).value=s.nom;
+if(s.adresse)document.getElementById(‘s-adresse’).value=s.adresse;
+if(s.tel1)document.getElementById(‘s-tel1’).value=s.tel1;
+if(s.tel2)document.getElementById(‘s-tel2’).value=s.tel2;
+if(s.email)document.getElementById(‘s-email’).value=s.email;
+if(s.slogan)document.getElementById(‘s-slogan’).value=s.slogan;
+}
+
+function saveSettings(){
+S.set(‘settings’,{
+nom:document.getElementById(‘s-nom’).value,
+adresse:document.getElementById(‘s-adresse’).value,
+tel1:document.getElementById(‘s-tel1’).value,
+tel2:document.getElementById(‘s-tel2’).value,
+email:document.getElementById(‘s-email’).value,
+slogan:document.getElementById(‘s-slogan’).value,
+});
+}
+
+document.addEventListener(‘DOMContentLoaded’, ()=>{
+initDefaults();
+document.getElementById(‘top-date’).textContent=new Date().toLocaleDateString(‘fr-FR’,{weekday:‘short’,day:‘numeric’,month:‘short’});
+document.getElementById(‘fd’).value=nowISO();
+document.getElementById(‘ach-date’).value=nowISO();
+const sel=document.getElementById(‘arc-month’);
+MONTHS.forEach(m=>{const o=document.createElement(‘option’);o.value=m;o.textContent=m;sel.appendChild(o);});
+populateProdSelect();
+populateExpressCatalog();
+populateConProdSelect();
+lpReservations=S.get(‘lpRes’,[]);
+const lpPrix=document.getElementById(‘lp-prix’);
+if(lpPrix)lpPrix.value=getLPDefaultTarif();
+loadSettings();
+updateDash();
+});
+</script>
+
+</body>
+</html>
