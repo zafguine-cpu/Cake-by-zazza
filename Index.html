@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>🎂 Cake by Zazza</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- System fonts only - no external dependencies -->
 <style>
 :root{
   --r:   #e8a0b4; --rd: #c06080; --rp: #fce8ef; --rpp:#f9d0df;
@@ -15,7 +15,7 @@
   --shm: 0 8px 40px rgba(192,96,128,.18); --rad:16px; --rads:10px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);color:var(--dk);overflow-x:hidden;}
+html,body{height:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;background:var(--nu);color:var(--dk);overflow-x:hidden;}
 
 /* NAV */
 .nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(–rpp);display:flex;height:62px;padding:0 4px 6px;}
@@ -26,7 +26,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 
 /* TOP BAR */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:99;background:var(–wh);border-bottom:1px solid var(–rpp);height:52px;display:flex;align-items:center;padding:0 16px;gap:10px;}
-.topbar-title{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–rt);flex:1;}
+.topbar-title{font-family:‘Georgia’,serif;font-size:20px;font-weight:600;color:var(–rt);flex:1;}
 .topbar-sub{font-size:11px;color:#bbb;}
 
 /* PAGES */
@@ -36,13 +36,13 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 
 /* PAGE HEADER */
 .ph{padding:18px 14px 14px;background:linear-gradient(135deg,var(–rt),var(–rd));color:#fff;margin-bottom:16px;}
-.ph h1{font-family:‘Cormorant Garamond’,serif;font-size:24px;font-weight:600;}
+.ph h1{font-family:‘Georgia’,serif;font-size:24px;font-weight:600;}
 .ph p{font-size:11px;opacity:.75;margin-top:3px;}
 
 /* CARDS */
 .card{background:var(–wh);border-radius:var(–rad);box-shadow:var(–sh);margin-bottom:14px;overflow:hidden;}
 .ch{padding:13px 16px;background:var(–rt);color:#fff;display:flex;align-items:center;gap:8px;}
-.ch h2{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;flex:1;}
+.ch h2{font-family:‘Georgia’,serif;font-size:17px;font-weight:600;flex:1;}
 .cb{padding:16px;}
 
 /* KPI */
@@ -50,20 +50,20 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 .kpi{background:var(–wh);border-radius:var(–rads);box-shadow:var(–sh);padding:14px 12px;text-align:center;border-top:3px solid var(–rpp);}
 .kpi.gd{border-color:var(–gn);}
 .kpi.bd{border-color:var(–re);}
-.kv{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–rt);line-height:1.1;}
+.kv{font-family:‘Georgia’,serif;font-size:20px;font-weight:600;color:var(–rt);line-height:1.1;}
 .kl{font-size:10px;color:#aaa;margin-top:3px;}
 
 /* FORMS */
 .fr{margin-bottom:12px;}
 .fr label{display:block;font-size:11px;font-weight:600;color:var(–rt);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
-.fr input,.fr select,.fr textarea{width:100%;padding:10px 12px;border:1.5px solid var(–rpp);border-radius:var(–rads);font-size:14px;font-family:‘DM Sans’,sans-serif;background:var(–wh);color:var(–dk);outline:none;transition:.2s;}
+.fr input,.fr select,.fr textarea{width:100%;padding:10px 12px;border:1.5px solid var(–rpp);border-radius:var(–rads);font-size:14px;font-family:-apple-system,‘Helvetica Neue’,sans-serif;background:var(–wh);color:var(–dk);outline:none;transition:.2s;}
 .fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(–r);box-shadow:0 0 0 3px rgba(232,160,180,.15);}
 .fr textarea{resize:vertical;min-height:64px;}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .auto{background:var(–gnb)!important;border-color:#aad4bc!important;color:var(–gn)!important;font-weight:600;}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:var(–rads);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:.2s;font-family:‘DM Sans’,sans-serif;white-space:nowrap;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:var(–rads);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:.2s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;white-space:nowrap;}
 .bp{background:var(–rt);color:#fff;}
 .bp:active{background:var(–rd);}
 .bs{background:var(–rp);color:var(–rt);}
@@ -94,7 +94,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 .li.bd{border-color:var(–re);}
 .li h4{font-size:13px;font-weight:600;}
 .li p{font-size:11px;color:#aaa;margin-top:2px;}
-.li .amt{font-family:‘Cormorant Garamond’,serif;font-size:17px;color:var(–rt);font-weight:600;}
+.li .amt{font-family:‘Georgia’,serif;font-size:17px;color:var(–rt);font-weight:600;}
 
 /* CATALOG */
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -104,7 +104,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 .cat-img img{width:100%;height:100%;object-fit:cover;}
 .cat-info{padding:10px 12px;}
 .cat-name{font-size:13px;font-weight:600;color:var(–rt);}
-.cat-price{font-family:‘Cormorant Garamond’,serif;font-size:16px;color:var(–gn);margin-top:2px;}
+.cat-price{font-family:‘Georgia’,serif;font-size:16px;color:var(–gn);margin-top:2px;}
 .cat-cost{font-size:10px;color:#aaa;margin-top:1px;}
 
 /* RECIPE */
@@ -133,7 +133,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 .modal{background:var(–wh);border-radius:var(–rad) var(–rad) 0 0;width:100%;max-width:600px;max-height:92vh;overflow-y:auto;box-shadow:var(–shm);animation:slideUp .3s ease;}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .mh{padding:16px 18px;background:var(–rt);color:#fff;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1;}
-.mh h3{font-family:‘Cormorant Garamond’,serif;font-size:19px;}
+.mh h3{font-family:‘Georgia’,serif;font-size:19px;}
 .mx{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;}
 .mb{padding:18px;}
 
@@ -160,7 +160,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 /* INVOICE PRINT */
 .inv-print{background:var(–wh);border:1.5px solid var(–rpp);border-radius:var(–rad);padding:20px;}
 .inv-brand{text-align:center;padding-bottom:14px;border-bottom:2px solid var(–rpp);margin-bottom:14px;}
-.inv-brand h1{font-family:‘Cormorant Garamond’,serif;font-size:26px;color:var(–rt);}
+.inv-brand h1{font-family:‘Georgia’,serif;font-size:26px;color:var(–rt);}
 .inv-brand p{font-size:10px;color:#aaa;margin-top:3px;}
 .inv-brand .dtype{font-size:18px;font-weight:700;color:var(–rd);letter-spacing:2px;margin-top:8px;text-transform:uppercase;}
 .inv-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
@@ -170,7 +170,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 .inv-table td{padding:7px 10px;border-bottom:1px solid var(–rp);font-size:12px;}
 .inv-totbox{background:var(–rt);color:#fff;border-radius:var(–rads);padding:13px;display:flex;justify-content:space-between;align-items:center;}
 .inv-totbox .lbl{font-size:11px;opacity:.8;}
-.inv-totbox .val{font-family:‘Cormorant Garamond’,serif;font-size:22px;font-weight:600;}
+.inv-totbox .val{font-family:‘Georgia’,serif;font-size:22px;font-weight:600;}
 .inv-imp{margin-top:12px;background:var(–rp);border-radius:8px;padding:10px;font-size:10px;}
 
 /* PROGRESS */
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 /* RAPPORT */
 .rstat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
 .rst{background:var(–wh);border-radius:var(–rads);padding:10px 8px;text-align:center;box-shadow:var(–sh);}
-.rst .v{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;color:var(–rt);}
+.rst .v{font-family:‘Georgia’,serif;font-size:17px;font-weight:600;color:var(–rt);}
 .rst .l{font-size:9px;color:#aaa;margin-top:2px;}
 
 /* TOP BAR ACTIONS */
@@ -339,7 +339,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
         <!-- Total -->
         <div style="background:var(--gnb);border-radius:var(--rads);padding:12px;display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:12px;font-weight:600;color:var(--gn);">💰 Total commande 🤖</span>
-          <span id="express-total-display" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gn);">0 GNF</span>
+          <span id="express-total-display" style="font-family:'Georgia',serif;font-size:20px;font-weight:600;color:var(--gn);">0 GNF</span>
         </div>
       </div>
 
@@ -550,7 +550,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
       <div class="fr"><label>Autres charges (GNF)</label><input type="number" id="ff-autres" placeholder="0" oninput="saveFF()"></div>
       <div style="background:var(--rp);border-radius:var(--rads);padding:12px;display:flex;justify-content:space-between;margin-top:4px;">
         <span style="font-weight:600;color:var(--rt);">Total charges fixes</span>
-        <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--rt);" id="ff-total">0 GNF</span>
+        <span style="font-family:'Georgia',serif;font-size:18px;font-weight:600;color:var(--rt);" id="ff-total">0 GNF</span>
       </div>
     </div>
   </div>
@@ -687,7 +687,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
 <div id="lp-cal">
   <div id="lp-calendar-nav" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
     <button class="btn bs bsm" onclick="lpPrevMonth()">◀</button>
-    <div id="lp-month-title" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#2c3e6b;"></div>
+    <div id="lp-month-title" style="font-family:'Georgia',serif;font-size:18px;font-weight:600;color:#2c3e6b;"></div>
     <button class="btn bs bsm" onclick="lpNextMonth()">▶</button>
   </div>
   <!-- Cal grid -->
@@ -852,7 +852,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--nu);colo
       <button class="btn bs bsm" onclick="addLPFFCharge()" style="margin-top:4px;">➕ Ajouter une charge fixe</button>
       <div style="background:#e8eef8;border-radius:var(--rads);padding:12px;margin-top:12px;display:flex;justify-content:space-between;">
         <span style="font-weight:600;color:#2c3e6b;">Total charges fixes / mois</span>
-        <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#2c3e6b;" id="lpff-total">0 GNF</span>
+        <span style="font-family:'Georgia',serif;font-size:18px;font-weight:600;color:#2c3e6b;" id="lpff-total">0 GNF</span>
       </div>
       <!-- Tarif par défaut -->
       <div style="border-top:1.5px solid #dce4f0;padding-top:12px;margin-top:12px;">
@@ -1855,7 +1855,7 @@ const m=curMonth(),y=curYear();
 const list=achats.filter(a=>{const d=new Date(a.date);return d.getMonth()===m&&d.getFullYear()===y;});
 const total=list.reduce((s,a)=>s+a.cout,0);
 if(!list.length){el.innerHTML=’<div class="empty"><div class="ic">🛒</div><h3>Aucun achat ce mois</h3></div>’;return;}
-el.innerHTML=`<div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--rp);border-radius:var(--rads);margin-bottom:10px;"><span style="font-weight:600;color:var(--rt);">Total achats ce mois</span><span style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--rt);">${fmt(total)}</span></div>`+
+el.innerHTML=`<div style="display:flex;justify-content:space-between;padding:10px 14px;background:var(--rp);border-radius:var(--rads);margin-bottom:10px;"><span style="font-weight:600;color:var(--rt);">Total achats ce mois</span><span style="font-family:'Georgia',serif;font-size:18px;color:var(--rt);">${fmt(total)}</span></div>`+
 list.map(a=>`<div class="li wa">
 <div><h4>${a.desc}</h4><p>${a.cat} · ${fmtDate(a.date)} · qté: ${a.qty}</p></div>
 <div style="text-align:right"><div class="amt" style="font-size:14px;">${fmt(a.cout)}</div>
@@ -2072,7 +2072,7 @@ if(next<today)next.setFullYear(today.getFullYear()+1);
 const diff=Math.ceil((next-today)/(1000*60*60*24));
 const prod=products.find(p=>p.id===c.prodId);
 const urgent=diff<=7;
-return`<div class="li ${urgent?'bd':'wa'}" onclick="showConDet(${c.id})"> <div> <h4>${c.prenom} ${c.nom}</h4> <p>${c.type} · ${fmtDate(c.date.replace(/\d{4}/,new Date().getFullYear()))}</p> ${prod?`<p style="color:var(--gn);font-size:10px;margin-top:2px;">🎂 ${prod.nom}</p>`:''} </div> <div style="text-align:right"> <div style="font-size:18px;font-weight:700;font-family:'Cormorant Garamond',serif;color:${urgent?'var(--re)':'var(--go)'};">${diff}j</div> <div style="font-size:10px;color:#aaa;">${c.tel?`<a href="tel:${c.tel}" style="color:var(--gn);text-decoration:none;">📞 Appeler</a>`:''}</div> </div> </div>`;
+return`<div class="li ${urgent?'bd':'wa'}" onclick="showConDet(${c.id})"> <div> <h4>${c.prenom} ${c.nom}</h4> <p>${c.type} · ${fmtDate(c.date.replace(/\d{4}/,new Date().getFullYear()))}</p> ${prod?`<p style="color:var(--gn);font-size:10px;margin-top:2px;">🎂 ${prod.nom}</p>`:''} </div> <div style="text-align:right"> <div style="font-size:18px;font-weight:700;font-family:'Georgia',serif;color:${urgent?'var(--re)':'var(--go)'};">${diff}j</div> <div style="font-size:10px;color:#aaa;">${c.tel?`<a href="tel:${c.tel}" style="color:var(--gn);text-decoration:none;">📞 Appeler</a>`:''}</div> </div> </div>`;
 }).join(’’);
 }
 
@@ -2248,7 +2248,7 @@ if(!upcoming.length){el.innerHTML=’<div class="empty"><div class="ic">🗓️<
 el.innerHTML=upcoming.map(r=>{
 const d=new Date(r.date);const diff=Math.ceil((d-today)/(1000*60*60*24));
 const sc=r.statut===‘PAYÉ INTÉGRALEMENT’?‘gd’:r.statut===‘ANNULÉ’?‘bd’:‘wa’;
-return`<div class="li ${sc}" onclick="showLPDet(${r.id})"> <div><h4>${r.client}</h4><p>${r.eventType} · ${fmtDate(r.date)} · ${r.hstart||''}-${r.hend||''}</p> <span class="badge ${r.statut==='PAYÉ INTÉGRALEMENT'?'bgn':r.statut==='ANNULÉ'?'bre':'bgo2'}">${r.statut}</span></div> <div style="text-align:right"> <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div> <div style="font-size:11px;color:${diff<=7?'var(--re)':'var(--go)'};">Dans ${diff}j</div> </div> </div>`;
+return`<div class="li ${sc}" onclick="showLPDet(${r.id})"> <div><h4>${r.client}</h4><p>${r.eventType} · ${fmtDate(r.date)} · ${r.hstart||''}-${r.hend||''}</p> <span class="badge ${r.statut==='PAYÉ INTÉGRALEMENT'?'bgn':r.statut==='ANNULÉ'?'bre':'bgo2'}">${r.statut}</span></div> <div style="text-align:right"> <div style="font-family:'Georgia',serif;font-size:16px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div> <div style="font-size:11px;color:${diff<=7?'var(--re)':'var(--go)'};">Dans ${diff}j</div> </div> </div>`;
 }).join(’’);
 }
 
@@ -2292,7 +2292,7 @@ notes:document.getElementById(‘lp-notes’).value,
 
 function buildLPReceiptHTML(r){
 const settings=S.get(‘settings’,{});
-return`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;"> <div style="text-align:center;border-bottom:2px solid #2c3e6b;padding-bottom:14px;margin-bottom:14px;"> <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:10px;color:#aaa;margin-top:3px;">${settings.adresse||'Conakry, Guinée'} · ${settings.tel1||''}</div> <div style="font-size:18px;font-weight:700;color:#1a2540;letter-spacing:2px;margin-top:8px;text-transform:uppercase;">REÇU DE RÉSERVATION</div> <div style="font-size:11px;color:#aaa;margin-top:4px;">N° ${r.num} — ${new Date().toLocaleDateString('fr-FR')}</div> </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;"> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Client</div><div style="font-weight:600;">${r.client}</div><div style="font-size:11px;color:#aaa;">${r.tel||''}</div></div> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Événement</div><div style="font-weight:600;">${r.eventType}</div><div style="font-size:11px;color:#aaa;">${fmtDate(r.date)}</div></div> </div> <table style="width:100%;border-collapse:collapse;margin-bottom:12px;"> <thead><tr style="background:#e8eef8;"><th style="padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Description</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Montant</th></tr></thead> <tbody> <tr><td style="padding:7px 10px;font-size:13px;border-bottom:1px solid #e8eef8;">Location salle — ${r.duree||'Journée'}<br><span style="font-size:10px;color:#aaa;">${r.hstart||''} → ${r.hend||''}</span></td><td style="padding:7px 10px;text-align:right;font-weight:600;">${fmt(r.prix)}</td></tr> </tbody> </table> <div style="display:flex;justify-content:space-between;padding:8px 10px;background:#f0f4ff;border-radius:8px;font-size:12px;margin-bottom:8px;"><span>Acompte reçu</span><span style="font-weight:600;color:var(--gn)">${fmt(r.acompte||0)}</span></div> <div style="background:#2c3e6b;color:#fff;border-radius:var(--rads);padding:13px;display:flex;justify-content:space-between;align-items:center;"> <div><div style="font-size:11px;opacity:.8;">Solde restant à régler</div></div> <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;">${fmt(r.solde||Math.max(0,r.prix-(r.acompte||0)))}</div> </div> ${r.notes?`<div style="margin-top:10px;font-size:11px;color:#aaa;padding:8px;background:#f5f5f5;border-radius:8px;">📝 ${r.notes}</div>`:’’}
+return`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;"> <div style="text-align:center;border-bottom:2px solid #2c3e6b;padding-bottom:14px;margin-bottom:14px;"> <div style="font-family:'Georgia',serif;font-size:24px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:10px;color:#aaa;margin-top:3px;">${settings.adresse||'Conakry, Guinée'} · ${settings.tel1||''}</div> <div style="font-size:18px;font-weight:700;color:#1a2540;letter-spacing:2px;margin-top:8px;text-transform:uppercase;">REÇU DE RÉSERVATION</div> <div style="font-size:11px;color:#aaa;margin-top:4px;">N° ${r.num} — ${new Date().toLocaleDateString('fr-FR')}</div> </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;"> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Client</div><div style="font-weight:600;">${r.client}</div><div style="font-size:11px;color:#aaa;">${r.tel||''}</div></div> <div><div style="font-size:10px;color:#aaa;text-transform:uppercase;">Événement</div><div style="font-weight:600;">${r.eventType}</div><div style="font-size:11px;color:#aaa;">${fmtDate(r.date)}</div></div> </div> <table style="width:100%;border-collapse:collapse;margin-bottom:12px;"> <thead><tr style="background:#e8eef8;"><th style="padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Description</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;color:#2c3e6b;">Montant</th></tr></thead> <tbody> <tr><td style="padding:7px 10px;font-size:13px;border-bottom:1px solid #e8eef8;">Location salle — ${r.duree||'Journée'}<br><span style="font-size:10px;color:#aaa;">${r.hstart||''} → ${r.hend||''}</span></td><td style="padding:7px 10px;text-align:right;font-weight:600;">${fmt(r.prix)}</td></tr> </tbody> </table> <div style="display:flex;justify-content:space-between;padding:8px 10px;background:#f0f4ff;border-radius:8px;font-size:12px;margin-bottom:8px;"><span>Acompte reçu</span><span style="font-weight:600;color:var(--gn)">${fmt(r.acompte||0)}</span></div> <div style="background:#2c3e6b;color:#fff;border-radius:var(--rads);padding:13px;display:flex;justify-content:space-between;align-items:center;"> <div><div style="font-size:11px;opacity:.8;">Solde restant à régler</div></div> <div style="font-family:'Georgia',serif;font-size:22px;font-weight:600;">${fmt(r.solde||Math.max(0,r.prix-(r.acompte||0)))}</div> </div> ${r.notes?`<div style="margin-top:10px;font-size:11px;color:#aaa;padding:8px;background:#f5f5f5;border-radius:8px;">📝 ${r.notes}</div>`:’’}
 <div style="margin-top:12px;background:#e8eef8;border-radius:8px;padding:10px;font-size:10px;">
 <strong>⚠️ Conditions :</strong> Le solde doit être réglé avant le début de l’événement. Toute annulation moins de 7 jours avant la date entraîne la perte de l’acompte.
 </div>
@@ -2334,7 +2334,7 @@ showLPContractHTML(r);cm(‘m-lp-det’);
 function showLPContractHTML(r){
 const settings=S.get(‘settings’,{});
 const today=new Date().toLocaleDateString(‘fr-FR’);
-const html=`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;font-size:12px;line-height:1.7;"> <div style="text-align:center;margin-bottom:18px;"> <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:18px;font-weight:700;color:#1a2540;margin-top:6px;text-transform:uppercase;letter-spacing:1px;">CONTRAT DE LOCATION DE SALLE</div> <div style="font-size:10px;color:#aaa;margin-top:4px;">Réf : ${r.num||'LP-2026-XXX'} — Établi le ${today}</div> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;background:#f5f8ff;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">PARTIES AU CONTRAT</div> <p><strong>Le Prestataire :</strong> Light Palace — ${settings.adresse||'Conakry, Guinée'} — Tél : ${settings.tel1||''}</p> <p style="margin-top:6px;"><strong>Le Client :</strong> ${r.client||'_______________'} — Tél : ${r.tel||'_______________'}</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 1 — OBJET DU CONTRAT</div> <p>Le Prestataire met à disposition du Client la salle Light Palace pour l'organisation de l'événement suivant :</p> <p style="margin-top:6px;">• <strong>Type d'événement :</strong> ${r.eventType||'_______________'}</p> <p>• <strong>Date :</strong> ${fmtDate(r.date)||'_______________'}</p> <p>• <strong>Horaires :</strong> ${r.hstart||'__:__'} à ${r.hend||'__:__'} (${r.duree||'Journée complète'})</p> <p>• <strong>Nombre d'invités estimé :</strong> ${r.guests||'___'} personnes</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 2 — CONDITIONS FINANCIÈRES</div> <p>• <strong>Tarif location :</strong> ${fmt(r.prix)}</p> <p>• <strong>Acompte à verser à la signature :</strong> ${fmt(r.acompte||Math.round(r.prix*0.5))} (50%)</p> <p>• <strong>Solde restant :</strong> ${fmt(r.solde)} — à régler au plus tard la veille de l'événement</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 3 — CONDITIONS GÉNÉRALES</div> <p>• L'acompte versé n'est pas remboursable en cas d'annulation moins de 7 jours avant l'événement.</p> <p>• Le Client est responsable des dégradations causées par ses invités.</p> <p>• La salle doit être libérée à l'heure convenue. Tout dépassement sera facturé.</p> <p>• Le Client s'engage à respecter le règlement intérieur de Light Palace.</p> <p>• La capacité maximale de la salle doit être respectée.</p> </div> ${r.notes?`<div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"><div style="font-weight:700;color:#2c3e6b;margin-bottom:6px;">CLAUSES PARTICULIÈRES</div><p>${r.notes}</p></div>`:’’}
+const html=`<div style="background:#fff;border:1.5px solid #b0c0e0;border-radius:var(--rad);padding:20px;font-size:12px;line-height:1.7;"> <div style="text-align:center;margin-bottom:18px;"> <div style="font-family:'Georgia',serif;font-size:22px;font-weight:600;color:#2c3e6b;">🏛️ LIGHT PALACE</div> <div style="font-size:18px;font-weight:700;color:#1a2540;margin-top:6px;text-transform:uppercase;letter-spacing:1px;">CONTRAT DE LOCATION DE SALLE</div> <div style="font-size:10px;color:#aaa;margin-top:4px;">Réf : ${r.num||'LP-2026-XXX'} — Établi le ${today}</div> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;background:#f5f8ff;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">PARTIES AU CONTRAT</div> <p><strong>Le Prestataire :</strong> Light Palace — ${settings.adresse||'Conakry, Guinée'} — Tél : ${settings.tel1||''}</p> <p style="margin-top:6px;"><strong>Le Client :</strong> ${r.client||'_______________'} — Tél : ${r.tel||'_______________'}</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 1 — OBJET DU CONTRAT</div> <p>Le Prestataire met à disposition du Client la salle Light Palace pour l'organisation de l'événement suivant :</p> <p style="margin-top:6px;">• <strong>Type d'événement :</strong> ${r.eventType||'_______________'}</p> <p>• <strong>Date :</strong> ${fmtDate(r.date)||'_______________'}</p> <p>• <strong>Horaires :</strong> ${r.hstart||'__:__'} à ${r.hend||'__:__'} (${r.duree||'Journée complète'})</p> <p>• <strong>Nombre d'invités estimé :</strong> ${r.guests||'___'} personnes</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 2 — CONDITIONS FINANCIÈRES</div> <p>• <strong>Tarif location :</strong> ${fmt(r.prix)}</p> <p>• <strong>Acompte à verser à la signature :</strong> ${fmt(r.acompte||Math.round(r.prix*0.5))} (50%)</p> <p>• <strong>Solde restant :</strong> ${fmt(r.solde)} — à régler au plus tard la veille de l'événement</p> </div> <div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"> <div style="font-weight:700;color:#2c3e6b;margin-bottom:8px;">ARTICLE 3 — CONDITIONS GÉNÉRALES</div> <p>• L'acompte versé n'est pas remboursable en cas d'annulation moins de 7 jours avant l'événement.</p> <p>• Le Client est responsable des dégradations causées par ses invités.</p> <p>• La salle doit être libérée à l'heure convenue. Tout dépassement sera facturé.</p> <p>• Le Client s'engage à respecter le règlement intérieur de Light Palace.</p> <p>• La capacité maximale de la salle doit être respectée.</p> </div> ${r.notes?`<div style="border:1px solid #b0c0e0;border-radius:8px;padding:12px;margin-bottom:14px;"><div style="font-weight:700;color:#2c3e6b;margin-bottom:6px;">CLAUSES PARTICULIÈRES</div><p>${r.notes}</p></div>`:’’}
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
 <div style="border-top:2px solid #2c3e6b;padding-top:8px;text-align:center;">
 <p style="font-size:10px;color:#aaa;">Pour Light Palace</p>
@@ -2417,7 +2417,7 @@ const ben=ca-charges-ff;
 document.getElementById(‘lp-rap-content’).innerHTML=` <div class="rstat" style="margin-top:12px;"> <div class="rst"><div class="v" style="color:#2c3e6b;">${mRes.length}</div><div class="l">🏛️ Événements</div></div> <div class="rst"><div class="v" style="color:#2c3e6b;">${fmt(ca)}</div><div class="l">💰 CA location</div></div> <div class="rst"><div class="v" style="color:${ben>0?'var(--gn)':'var(--re)'};">${fmt(ben)}</div><div class="l">✅ Bénéfice</div></div> </div> ${mRes.length?mRes.map(r=>`
 <div class="li ${r.statut==='PAYÉ INTÉGRALEMENT'?'gd':'wa'}" onclick="showLPDet(${r.id})">
 <div><h4>${r.client}</h4><p>${r.eventType} · ${fmtDate(r.date)}</p></div>
-<div style="text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div><div style="font-size:10px;color:var(--re);">Solde: ${fmt(r.solde)}</div></div>
+<div style="text-align:right"><div style="font-family:'Georgia',serif;font-size:15px;color:#2c3e6b;font-weight:600;">${fmt(r.prix)}</div><div style="font-size:10px;color:var(--re);">Solde: ${fmt(r.solde)}</div></div>
 </div>`).join(''):'<div class="empty"><div class="ic">🏛️</div><h3>Aucune réservation ce mois</h3></div>'}`;
 }
 
